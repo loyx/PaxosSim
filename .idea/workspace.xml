@@ -5,13 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4a947b55-fe62-4f56-8e2c-78ed909eceea" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/Acceptor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/Proposer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/Paxos.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/Communicator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/protocol/Packet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/conf/Configuation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/log/PaxosLogger.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/simluator/Machine.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/simluator/Network.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +25,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Interface" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -41,13 +46,29 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "create.test.in.the.same.root": "true",
+    "jdk.selected.JAVA_MODULE": "corretto-16",
+    "last_opened_file_path": "E:/7_桌面temp/工作区/云计算（22年春）/大作业/PaxosSim",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.keymap"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="cn.loyx.paxossim.simluator" />
+      <recent name="cn.loyx.paxos" />
+      <recent name="cn.loyx.paxossim.gui" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -61,6 +82,7 @@
       <workItem from="1659610623472" duration="389000" />
       <workItem from="1659611185024" duration="228000" />
       <workItem from="1659611511055" duration="1000000" />
+      <workItem from="1659879044737" duration="6783000" />
     </task>
     <servers />
   </component>
