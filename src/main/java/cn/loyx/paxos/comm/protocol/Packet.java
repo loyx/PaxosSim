@@ -1,4 +1,15 @@
 package cn.loyx.paxos.comm.protocol;
 
-public interface Packet {
+import lombok.Data;
+
+@Data
+public class Packet {
+    public enum PacketTarget{
+        ACCEPTOR,
+        PROPOSER,
+        LEARNER,
+    }
+
+    PacketTarget target;
+
 }

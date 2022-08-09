@@ -1,0 +1,22 @@
+{
+  "nodeList": [
+    {
+      "id": 1,
+      "host": "localhost",
+      "port": 23333
+    },
+    {
+      "id": 2,
+      "host": "localhost",
+      "port": 23334
+    },
+    {
+      "id": 3,
+      "host": "localhost",
+      "port": 23335
+    }
+  ],
+  "id": 1,
+  "timeout": -1,
+  "dataPath": "./tmp/"
+}

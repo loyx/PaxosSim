@@ -4,17 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a947b55-fe62-4f56-8e2c-78ed909eceea" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/Paxos.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/Communicator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/protocol/Packet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/conf/Configuation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/log/PaxosLogger.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/simluator/Machine.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/simluator/Network.java" afterDir="false" />
+    <list default="true" id="4a947b55-fe62-4f56-8e2c-78ed909eceea" name="Changes" comment=":tada: initial PaxosSim">
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/NaivePaxos.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/PaxosValue.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/StateMachineContext.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/conf/NodeInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/impl/NaivePaxos.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/cn/loyx/paxos/conf/ConfigurationTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/config.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/Acceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/Acceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/Paxos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/Paxos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/Proposer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/Proposer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/Communicator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/Communicator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/protocol/Packet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/protocol/Packet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/conf/Configuation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/conf/Configuration.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,8 +30,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
         <option value="JUnit5 Test Class" />
       </list>
     </option>
@@ -52,11 +58,11 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "create.test.in.the.same.root": "true",
     "jdk.selected.JAVA_MODULE": "corretto-16",
-    "last_opened_file_path": "E:/7_桌面temp/工作区/云计算（22年春）/大作业/PaxosSim",
+    "last_opened_file_path": "D:/a_2_temp/MyPaxos/MyPaxos",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.keymap"
+    "settings.editor.selected.configurable": "com.maddyhome.idea.vim.ui.VimEmulationConfigurable"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -64,10 +70,34 @@
       <recent name="" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="cn.loyx.paxos.conf" />
       <recent name="cn.loyx.paxossim.simluator" />
       <recent name="cn.loyx.paxos" />
       <recent name="cn.loyx.paxossim.gui" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="ConfigurationTest.testFromGson" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="PaxosSim" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cn.loyx.paxos.conf.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="cn.loyx.paxos.conf" />
+      <option name="MAIN_CLASS_NAME" value="cn.loyx.paxos.conf.ConfigurationTest" />
+      <option name="METHOD_NAME" value="testFromGson" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.ConfigurationTest.testFromGson" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
