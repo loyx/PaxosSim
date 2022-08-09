@@ -4,17 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a947b55-fe62-4f56-8e2c-78ed909eceea" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/Paxos.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/Communicator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/protocol/Packet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/conf/Configuation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/log/PaxosLogger.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/simluator/Machine.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/simluator/Network.java" afterDir="false" />
+    <list default="true" id="4a947b55-fe62-4f56-8e2c-78ed909eceea" name="Changes" comment=":construction: on working">
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/SocketCommunicator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/protocol/PacketTarget.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/impl/naive/Acceptor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/impl/naive/NaivePaxos.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/impl/naive/Proposer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/cn/loyx/paxos/impl/NaivePaxosTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/Acceptor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/NaivePaxos.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/Paxos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/Paxos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/PaxosValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/PaxosValue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/Proposer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/Communicator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/Communicator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/protocol/Packet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/protocol/PaxosPacket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/impl/NaivePaxos.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,9 +31,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Enum" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -52,22 +60,70 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "create.test.in.the.same.root": "true",
     "jdk.selected.JAVA_MODULE": "corretto-16",
-    "last_opened_file_path": "E:/7_桌面temp/工作区/云计算（22年春）/大作业/PaxosSim",
+    "last_opened_file_path": "D:/0_workspace/云计算/PaxosSim/src/test/resources",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.keymap"
+    "settings.editor.selected.configurable": "MavenSettings"
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\0_workspace\云计算\PaxosSim\src\test\resources" />
+    </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="cn.loyx.paxos.impl" />
+    </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="cn.loyx.paxos.impl" />
+      <recent name="cn.loyx.paxos.conf" />
       <recent name="cn.loyx.paxossim.simluator" />
       <recent name="cn.loyx.paxos" />
       <recent name="cn.loyx.paxossim.gui" />
     </key>
+  </component>
+  <component name="RunManager" selected="JUnit.NaivePaxosTest.submit">
+    <configuration name="ConfigurationTest.testFromGson" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="PaxosSim" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cn.loyx.paxos.conf.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="cn.loyx.paxos.conf" />
+      <option name="MAIN_CLASS_NAME" value="cn.loyx.paxos.conf.ConfigurationTest" />
+      <option name="METHOD_NAME" value="testFromGson" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NaivePaxosTest.submit" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="PaxosSim" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cn.loyx.paxos.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="cn.loyx.paxos.impl" />
+      <option name="MAIN_CLASS_NAME" value="cn.loyx.paxos.impl.NaivePaxosTest" />
+      <option name="METHOD_NAME" value="submit" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.NaivePaxosTest.submit" />
+        <item itemvalue="JUnit.ConfigurationTest.testFromGson" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -83,7 +139,17 @@
       <workItem from="1659611185024" duration="228000" />
       <workItem from="1659611511055" duration="1000000" />
       <workItem from="1659879044737" duration="6783000" />
+      <workItem from="1660128948659" duration="1273000" />
+      <workItem from="1660130245922" duration="3734000" />
     </task>
+    <task id="LOCAL-00001" summary=":construction: on working">
+      <created>1660048329581</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1660048329581</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -99,5 +165,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value=":construction: on working" />
+    <option name="LAST_COMMIT_MESSAGE" value=":construction: on working" />
   </component>
 </project>

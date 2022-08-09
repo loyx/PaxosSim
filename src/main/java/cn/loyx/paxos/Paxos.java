@@ -1,4 +1,6 @@
 package cn.loyx.paxos;
 
-public class Paxos {
+public interface Paxos {
+    public void submit(PaxosValue value, StateMachineContext context);
+    public void run();
 }
