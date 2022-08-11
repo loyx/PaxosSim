@@ -2,13 +2,11 @@ package cn.loyx.paxos.comm;
 
 import cn.loyx.paxos.comm.protocol.PaxosPacket;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.extern.log4j.Log4j;
 
-import java.io.IOException;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.concurrent.*;
 
 @Log4j
@@ -23,32 +21,41 @@ public class SocketCommunicator implements Communicator {
     private final BlockingQueue<PaxosPacket> receivedPackets;
     private final BlockingQueue<SocketPacket> needSendPackets;
     private final int port;
-    private final ExecutorService service;
+    private final ExecutorService executors;
     public SocketCommunicator(int port){
         this.port = port;
         this.receivedPackets = new LinkedBlockingQueue<>();
         this.needSendPackets = new LinkedBlockingQueue<>();
-        this.service = Executors.newFixedThreadPool(50);
+        this.executors = Executors.newFixedThreadPool(10);
 
         // receive thread
         new Thread(()->{
             try(ServerSocket serverSocket = new ServerSocket(port)){
                 while (true){
                     Socket accept = serverSocket.accept();
-                    // todo decode packet
-                    service.submit(this::decode);
+                    executors.submit(()->{
+                        try {
+                            ObjectInputStream ois = new ObjectInputStream(accept.getInputStream());
+                            PaxosPacket packet = (PaxosPacket) ois.readObject();
+                            receivedPackets.put(packet);
+                        } catch (IOException | ClassNotFoundException | InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                    });
                 }
             }catch (Exception e){
                 e.printStackTrace();
             }
-        }, "receive thread").start();
+        }, "receive-thread").start();
 
         // send thread
         new Thread(()->{
             try {
                 SocketPacket packet = needSendPackets.take();
                 try(Socket socket = new Socket(packet.ip, packet.port)){
-                    // todo send packet
+                    ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+                    oos.writeObject(packet.data);
+                    oos.close();
                 }catch (IOException e){
                     throw new RuntimeException(e);
                 }
@@ -57,13 +64,10 @@ public class SocketCommunicator implements Communicator {
                 throw new RuntimeException(e);
             }
 
-        }, "seed thread").start();
+        }, "seed-thread").start();
 
     }
 
-    private PaxosPacket decode(){
-        return null;
-    }
     @Override
     public void send(String ip, int port, PaxosPacket paxosPacket) {
         log.info("send a packet: " + paxosPacket);

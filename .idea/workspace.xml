@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a947b55-fe62-4f56-8e2c-78ed909eceea" name="Changes" comment=":construction: finish NaivePaxos run() and start()">
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/protocol/PacketType.java" afterDir="false" />
+    <list default="true" id="4a947b55-fe62-4f56-8e2c-78ed909eceea" name="Changes" comment=":construction: add SocketCommunicator.java">
+      <change afterPath="$PROJECT_DIR$/src/test/java/cn/loyx/paxos/comm/protocol/PaxosPacketTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/Communicator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/Communicator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/PaxosValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/PaxosValue.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/SocketCommunicator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/SocketCommunicator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/protocol/PaxosPacket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/protocol/PaxosPacket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/impl/naive/NaivePaxos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/impl/naive/NaivePaxos.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,9 +20,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="JUnit5 Test Class" />
         <option value="Class" />
         <option value="Enum" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -39,23 +38,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "create.test.in.the.same.root": "true",
-    "jdk.selected.JAVA_MODULE": "corretto-16",
-    "last_opened_file_path": "D:/0_workspace/云计算/PaxosSim/src/test/resources",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.keymap"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-16&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/0_workspace/云计算/PaxosSim/src/test/resources&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\0_workspace\云计算\PaxosSim\src\test\resources" />
@@ -67,14 +66,24 @@
       <recent name="cn.loyx.paxos.impl" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="cn.loyx.paxos.comm.protocol" />
       <recent name="cn.loyx.paxos.impl" />
       <recent name="cn.loyx.paxos.conf" />
       <recent name="cn.loyx.paxossim.simluator" />
       <recent name="cn.loyx.paxos" />
-      <recent name="cn.loyx.paxossim.gui" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.NaivePaxosTest.submit">
+  <component name="RunManager" selected="JUnit.ALL-TEST">
+    <configuration name="ALL-TEST" type="JUnit" factoryName="JUnit">
+      <module name="PaxosSim" />
+      <option name="PACKAGE_NAME" value="cn.loyx" />
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ConfigurationTest.testFromGson" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="PaxosSim" />
       <extension name="coverage">
@@ -107,8 +116,31 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="PaxosPacketTest.TestSerializable" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="PaxosSim" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cn.loyx.paxos.comm.protocol.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="cn.loyx.paxos.comm.protocol" />
+      <option name="MAIN_CLASS_NAME" value="cn.loyx.paxos.comm.protocol.PaxosPacketTest" />
+      <option name="METHOD_NAME" value="TestSerializable" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="JUnit.ALL-TEST" />
+      <item itemvalue="JUnit.ConfigurationTest.testFromGson" />
+      <item itemvalue="JUnit.NaivePaxosTest.submit" />
+      <item itemvalue="JUnit.PaxosPacketTest.TestSerializable" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.PaxosPacketTest.TestSerializable" />
         <item itemvalue="JUnit.NaivePaxosTest.submit" />
         <item itemvalue="JUnit.ConfigurationTest.testFromGson" />
       </list>
@@ -132,7 +164,8 @@
       <workItem from="1660130245922" duration="4258000" />
       <workItem from="1660139121716" duration="137000" />
       <workItem from="1660177039960" duration="1457000" />
-      <workItem from="1660215552004" duration="3030000" />
+      <workItem from="1660215552004" duration="3501000" />
+      <workItem from="1660219080724" duration="1573000" />
     </task>
     <task id="LOCAL-00001" summary=":construction: on working">
       <created>1660048329581</created>
@@ -148,7 +181,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660134361609</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary=":construction: add SocketCommunicator.java">
+      <created>1660218716400</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1660218716400</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -168,7 +208,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value=":construction: on working" />
     <MESSAGE value=":construction: finish NaivePaxos run() and start()" />
-    <option name="LAST_COMMIT_MESSAGE" value=":construction: finish NaivePaxos run() and start()" />
+    <MESSAGE value=":construction: add SocketCommunicator.java" />
+    <option name="LAST_COMMIT_MESSAGE" value=":construction: add SocketCommunicator.java" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -179,5 +220,9 @@
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
