@@ -5,8 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4a947b55-fe62-4f56-8e2c-78ed909eceea" name="Changes" comment=":construction: finish NaivePaxos run() and start()">
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/NaivePaxos.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/impl/NaivePaxos.java" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/protocol/PacketType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/Communicator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/Communicator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/SocketCommunicator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/SocketCommunicator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/protocol/PaxosPacket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/protocol/PaxosPacket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/impl/naive/NaivePaxos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/impl/naive/NaivePaxos.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,9 +21,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Enum" />
         <option value="JUnit5 Test Class" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -35,23 +39,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-16&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/0_workspace/云计算/PaxosSim/src/test/resources&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "create.test.in.the.same.root": "true",
+    "jdk.selected.JAVA_MODULE": "corretto-16",
+    "last_opened_file_path": "D:/0_workspace/云计算/PaxosSim/src/test/resources",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.keymap"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\0_workspace\云计算\PaxosSim\src\test\resources" />
@@ -126,6 +130,9 @@
       <workItem from="1659879044737" duration="6783000" />
       <workItem from="1660128948659" duration="1273000" />
       <workItem from="1660130245922" duration="4258000" />
+      <workItem from="1660139121716" duration="137000" />
+      <workItem from="1660177039960" duration="1457000" />
+      <workItem from="1660215552004" duration="3030000" />
     </task>
     <task id="LOCAL-00001" summary=":construction: on working">
       <created>1660048329581</created>

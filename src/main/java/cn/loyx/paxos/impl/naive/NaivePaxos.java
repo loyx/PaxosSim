@@ -1,9 +1,12 @@
 package cn.loyx.paxos.impl.naive;
 
-import cn.loyx.paxos.*;
+import cn.loyx.paxos.Paxos;
+import cn.loyx.paxos.PaxosValue;
+import cn.loyx.paxos.StateMachineContext;
 import cn.loyx.paxos.comm.Communicator;
 import cn.loyx.paxos.comm.SocketCommunicator;
 import cn.loyx.paxos.comm.protocol.PacketTarget;
+import cn.loyx.paxos.comm.protocol.PacketType;
 import cn.loyx.paxos.comm.protocol.PaxosPacket;
 import cn.loyx.paxos.conf.Configuration;
 import cn.loyx.paxos.conf.NodeInfo;
@@ -45,18 +48,18 @@ public class NaivePaxos implements Paxos {
         }
         this.conf = configuration;
         this.selfInfo = configuration.getNodeList().get(configuration.getId());
-        this.commServer = new SocketCommunicator();
+        this.commServer = new SocketCommunicator(selfInfo.getPort());
     }
 
     public NaivePaxos(Configuration configuration){
         this.conf = configuration;
         this.selfInfo = configuration.getNodeList().get(configuration.getId());
-        this.commServer = new SocketCommunicator();
+        this.commServer = new SocketCommunicator(selfInfo.getPort());
     }
 
     @Override
     public void submit(PaxosValue value, StateMachineContext context) {
-        PaxosPacket packet = new PaxosPacket(PacketTarget.PROPOSER, value);
+        PaxosPacket packet = new PaxosPacket(PacketTarget.PROPOSER, selfInfo.getId(), PacketType.PROPOSE_PACKET, value);
         log.debug("submit packet " + packet);
         try {
             processQueue.put(packet);
@@ -80,13 +83,13 @@ public class NaivePaxos implements Paxos {
 
         new Thread(()->{
             while (true){
-                PaxosPacket take;
+                PaxosPacket packet;
                 try {
-                    take = sendQueue.take();
+                    packet = sendQueue.take();
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
-                commServer.send(take);
+                commServer.send("", 1, packet); // todo implement
             }
         }, "send-thread").start();
 
