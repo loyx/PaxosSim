@@ -10,5 +10,21 @@ public class Proposer {
     public Optional<PaxosPacket> handlePacket(PaxosPacket paxosPacket){
         log.debug("Proposer packet: " + paxosPacket);
         return Optional.empty();
-    };
+    }
+
+    void onPrepare(){
+
+    }
+
+    void prepareResponse(){
+
+    }
+
+    void onAccept(){
+
+    }
+
+    void acceptResponse(){
+
+    }
 }

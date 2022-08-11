@@ -12,4 +12,24 @@ public class Acceptor {
         log.debug("Acceptor: " + paxosPacket);
         return Optional.empty();
     }
+
+    private void prepare(){
+
+    }
+
+    private void onPrepareResponse(){
+
+    }
+
+    private void accept(){
+
+    }
+
+    private void onAcceptResponse(){
+
+    }
+
+    private void done(){
+
+    }
 }

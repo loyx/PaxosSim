@@ -59,7 +59,10 @@ public class NaivePaxos implements Paxos {
 
     @Override
     public void submit(PaxosValue value, StateMachineContext context) {
-        PaxosPacket packet = new PaxosPacket(PacketTarget.PROPOSER, selfInfo.getId(), PacketType.PROPOSE_PACKET, value);
+        // todo packet
+        PaxosPacket packet = new PaxosPacket(
+                PacketTarget.PROPOSER, selfInfo.getId(), PacketType.PROPOSE_PACKET, null
+        );
         log.debug("submit packet " + packet);
         try {
             processQueue.put(packet);
