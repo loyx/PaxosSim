@@ -16,7 +16,7 @@ class NaivePaxosTest {
         NaivePaxos naivePaxos = new NaivePaxos("src/test/resources/config.json");
         naivePaxos.run();
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 3; i++) {
             naivePaxos.submit(new PaxosValue(String.format("Packet(%d)",i)), null);
         }
     }

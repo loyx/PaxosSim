@@ -5,6 +5,7 @@ import lombok.Data;
 import org.junit.jupiter.api.Test;
 
 import java.io.*;
+import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,7 +18,7 @@ class PaxosPacketTest {
     @Test
     void TestSerializable() throws IOException, ClassNotFoundException {
         ValueLoad valueLoad = new ValueLoad(new PaxosValue("123"));
-        PaxosPacket paxosPacket = new PaxosPacket(PacketTarget.PROPOSER, 1, PacketType.PROPOSE_PACKET, valueLoad);
+        PaxosPacket paxosPacket = new PaxosPacket(PacketTarget.PROPOSER, Arrays.asList(1,2,3),1, PacketType.PROPOSE_PACKET, valueLoad);
         System.out.println("before: " + paxosPacket);
         File file = File.createTempFile("testSerial", ".tmp");
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));

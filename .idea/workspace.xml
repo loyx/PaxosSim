@@ -4,15 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a947b55-fe62-4f56-8e2c-78ed909eceea" name="Changes" comment=":construction: finish SocketCommunicator.java">
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/protocol/PaxosPacketLoad.java" afterDir="false" />
+    <list default="true" id="4a947b55-fe62-4f56-8e2c-78ed909eceea" name="Changes" comment=":construction: modify packet design">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/protocol/PaxosPacket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/protocol/PaxosPacket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/impl/naive/Acceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/impl/naive/Acceptor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/impl/naive/NaivePaxos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/impl/naive/NaivePaxos.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/impl/naive/Proposer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/impl/naive/Proposer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/cn/loyx/paxos/comm/protocol/PaxosPacketTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/cn/loyx/paxos/comm/protocol/PaxosPacketTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/testSerial" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,7 +164,7 @@
       <workItem from="1660139121716" duration="137000" />
       <workItem from="1660177039960" duration="1457000" />
       <workItem from="1660215552004" duration="3501000" />
-      <workItem from="1660219080724" duration="3350000" />
+      <workItem from="1660219080724" duration="3797000" />
     </task>
     <task id="LOCAL-00001" summary=":construction: on working">
       <created>1660048329581</created>
@@ -198,7 +194,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660220709823</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary=":construction: modify packet design">
+      <created>1660222521515</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1660222521515</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -220,7 +223,8 @@
     <MESSAGE value=":construction: finish NaivePaxos run() and start()" />
     <MESSAGE value=":construction: add SocketCommunicator.java" />
     <MESSAGE value=":construction: finish SocketCommunicator.java" />
-    <option name="LAST_COMMIT_MESSAGE" value=":construction: finish SocketCommunicator.java" />
+    <MESSAGE value=":construction: modify packet design" />
+    <option name="LAST_COMMIT_MESSAGE" value=":construction: modify packet design" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -16,9 +16,11 @@ import lombok.extern.log4j.Log4j;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.stream.Collectors;
 
 @Log4j
 public class NaivePaxos implements Paxos {
@@ -59,9 +61,10 @@ public class NaivePaxos implements Paxos {
 
     @Override
     public void submit(PaxosValue value, StateMachineContext context) {
-        // todo packet
+        // todo blocking method
+        List<Integer> dstIds = conf.getNodeList().stream().map(NodeInfo::getId).collect(Collectors.toList());
         PaxosPacket packet = new PaxosPacket(
-                PacketTarget.PROPOSER, selfInfo.getId(), PacketType.PROPOSE_PACKET, null
+                PacketTarget.PROPOSER, dstIds, selfInfo.getId(), PacketType.PROPOSE_PACKET, null
         );
         log.debug("submit packet " + packet);
         try {
@@ -92,7 +95,10 @@ public class NaivePaxos implements Paxos {
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
-                commServer.send("", 1, packet); // todo implement
+                for (Integer dstId : packet.getDstIds()) {
+                    NodeInfo nodeInfo = conf.getNodeList().get(dstId);
+                    commServer.send(nodeInfo.getIp(), nodeInfo.getPort(), packet);
+                }
             }
         }, "send-thread").start();
 
