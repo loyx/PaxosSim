@@ -29,48 +29,49 @@ public class SocketCommunicator implements Communicator {
         this.executors = Executors.newFixedThreadPool(10);
 
         // receive thread
-        new Thread(()->{
-            try(ServerSocket serverSocket = new ServerSocket(port)){
-                while (true){
+        new Thread(() -> {
+            try (ServerSocket serverSocket = new ServerSocket(port)) {
+                while (true) {
                     Socket accept = serverSocket.accept();
-                    executors.submit(()->{
+                    executors.submit(() -> {
                         try {
                             ObjectInputStream ois = new ObjectInputStream(accept.getInputStream());
-                            PaxosPacket packet = (PaxosPacket) ois.readObject();
-                            receivedPackets.put(packet);
-                        } catch (IOException | ClassNotFoundException | InterruptedException e) {
-                            throw new RuntimeException(e);
+                            receivedPackets.put((PaxosPacket) ois.readObject());
+                        } catch (IOException | ClassNotFoundException | InterruptedException e1) {
+                            throw new RuntimeException(e1);
                         }
                     });
                 }
             }catch (Exception e){
                 e.printStackTrace();
             }
-        }, "receive-thread").start();
+        }, "comm-receive-thread").start();
 
         // send thread
-        new Thread(()->{
-            try {
-                SocketPacket packet = needSendPackets.take();
-                try(Socket socket = new Socket(packet.ip, packet.port)){
-                    ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
-                    oos.writeObject(packet.data);
-                    oos.close();
-                }catch (IOException e){
+        new Thread(() -> {
+            while (true){
+                try {
+                    SocketPacket packet = needSendPackets.take();
+                    try (Socket socket = new Socket(packet.ip, packet.port)) {
+                        ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+                        oos.writeObject(packet.data);
+                        oos.close();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
-
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
             }
 
-        }, "seed-thread").start();
+        }, "comm-send-thread").start();
 
     }
 
     @Override
     public void send(String ip, int port, PaxosPacket paxosPacket) {
-        log.info("send a packet: " + paxosPacket);
+        log.info(String.format("send [%s, %s] a packet %s", ip, port, paxosPacket));
         try {
             needSendPackets.put(new SocketPacket(ip, port, paxosPacket));
         } catch (InterruptedException e) {

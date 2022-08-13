@@ -16,6 +16,7 @@ import lombok.extern.log4j.Log4j;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.text.MessageFormat;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.BlockingQueue;
@@ -60,7 +61,7 @@ public class NaivePaxos implements Paxos {
     }
 
     @Override
-    public void submit(PaxosValue value, StateMachineContext context) {
+    public void propose(PaxosValue value, StateMachineContext context) {
         // todo blocking method
         List<Integer> dstIds = conf.getNodeList().stream().map(NodeInfo::getId).collect(Collectors.toList());
         PaxosPacket packet = new PaxosPacket(
@@ -127,5 +128,11 @@ public class NaivePaxos implements Paxos {
                 }
             }
         }, "process-thread").start();
+
+        log.info(String.format("%s Site run on [ip: %s, port: %s]",
+                this.getClass().getSimpleName(),
+                selfInfo.getIp(),
+                selfInfo.getPort()
+                ));
     }
 }
