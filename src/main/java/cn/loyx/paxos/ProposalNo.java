@@ -5,17 +5,23 @@ import java.util.Date;
 import java.util.Objects;
 
 public class ProposalNo implements Serializable {
-    private static final long serialVersionUID = -7400927432205312398L;
-    private final int proposerId;
+    private static final long serialVersionUID = -5049415909460704153L;
     private final long no;
 
-    public ProposalNo(int proposerId) {
-        this.proposerId = proposerId;
+    public ProposalNo() {
         this.no = new Date().getTime();
     }
 
-    public int getProposerId() {
-        return proposerId;
+    private ProposalNo(int no){
+        this.no = no;
+    }
+
+    public static ProposalNo newNo(){
+        return new ProposalNo();
+    }
+
+    public static ProposalNo empty(){
+        return new ProposalNo(0);
     }
 
     public long getNo() {
@@ -27,23 +33,22 @@ public class ProposalNo implements Serializable {
     }
 
     @Override
-    public String toString() {
-        return "ProposalNo{" +
-                "proposerId=" + proposerId +
-                ", no=" + no +
-                '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ProposalNo that = (ProposalNo) o;
-        return proposerId == that.proposerId && no == that.no;
+        return no == that.no;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(proposerId, no);
+        return Objects.hash(no);
+    }
+
+    @Override
+    public String toString() {
+        return "ProposalNo{" +
+                "no=" + no +
+                '}';
     }
 }

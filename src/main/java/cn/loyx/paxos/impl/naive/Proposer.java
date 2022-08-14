@@ -3,13 +3,19 @@ package cn.loyx.paxos.impl.naive;
 import cn.loyx.paxos.comm.protocol.PacketTarget;
 import cn.loyx.paxos.comm.protocol.PacketType;
 import cn.loyx.paxos.comm.protocol.PaxosPacket;
-import cn.loyx.paxos.comm.protocol.PrepareLoad;
+import cn.loyx.paxos.conf.Configuration;
 import lombok.extern.log4j.Log4j;
 
 import java.util.Optional;
 
 @Log4j
 public class Proposer {
+    private final Configuration conf;
+
+    public Proposer(Configuration conf) {
+        this.conf = conf;
+    }
+
     public Optional<PaxosPacket> handlePacket(PaxosPacket packet){
         log.debug("Proposer get a packet: " + packet);
         switch (packet.getType()){
@@ -30,7 +36,7 @@ public class Proposer {
                 PacketTarget.ACCEPTOR,
                 packet.getDstIds(),
                 packet.getSrcId(),
-                PacketType.PROPOSE_PACKET,
+                PacketType.PREPARE_PACKET,
                 packet.getLoad()
         );
         log.info("prepare packet: " + preparePacket);

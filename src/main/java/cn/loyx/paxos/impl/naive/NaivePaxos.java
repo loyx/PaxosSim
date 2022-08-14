@@ -8,7 +8,7 @@ import cn.loyx.paxos.comm.SocketCommunicator;
 import cn.loyx.paxos.comm.protocol.PacketTarget;
 import cn.loyx.paxos.comm.protocol.PacketType;
 import cn.loyx.paxos.comm.protocol.PaxosPacket;
-import cn.loyx.paxos.comm.protocol.PrepareLoad;
+import cn.loyx.paxos.comm.protocol.PrepareNo;
 import cn.loyx.paxos.conf.Configuration;
 import cn.loyx.paxos.conf.NodeInfo;
 import com.google.gson.Gson;
@@ -17,7 +17,6 @@ import lombok.extern.log4j.Log4j;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.text.MessageFormat;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.BlockingQueue;
@@ -36,8 +35,6 @@ public class NaivePaxos implements Paxos {
     private final BlockingQueue<PaxosPacket> processQueue;
     private final BlockingQueue<PaxosPacket> sendQueue;
     {
-        acceptor = new Acceptor();
-        proposer = new Proposer();
         processQueue = new LinkedBlockingQueue<>();
         sendQueue = new LinkedBlockingQueue<>();
     }
@@ -53,12 +50,16 @@ public class NaivePaxos implements Paxos {
         this.conf = configuration;
         this.selfInfo = configuration.getNodeList().get(configuration.getId());
         this.commServer = new SocketCommunicator(selfInfo.getPort());
+        this.acceptor = new Acceptor(conf);
+        this.proposer = new Proposer(conf);
     }
 
     public NaivePaxos(Configuration configuration){
         this.conf = configuration;
         this.selfInfo = configuration.getNodeList().get(configuration.getId());
         this.commServer = new SocketCommunicator(selfInfo.getPort());
+        this.acceptor = new Acceptor(conf);
+        this.proposer = new Proposer(conf);
     }
 
     @Override
@@ -69,7 +70,7 @@ public class NaivePaxos implements Paxos {
                 PacketTarget.PROPOSER,
                 dstIds, selfInfo.getId(),
                 PacketType.PROPOSE_PACKET,
-                PrepareLoad.of(selfInfo.getId())
+                new PrepareNo()
         );
         log.debug("submit packet " + packet);
         try {
