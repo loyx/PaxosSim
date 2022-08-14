@@ -8,6 +8,7 @@ import cn.loyx.paxos.comm.SocketCommunicator;
 import cn.loyx.paxos.comm.protocol.PacketTarget;
 import cn.loyx.paxos.comm.protocol.PacketType;
 import cn.loyx.paxos.comm.protocol.PaxosPacket;
+import cn.loyx.paxos.comm.protocol.PrepareLoad;
 import cn.loyx.paxos.conf.Configuration;
 import cn.loyx.paxos.conf.NodeInfo;
 import com.google.gson.Gson;
@@ -65,7 +66,10 @@ public class NaivePaxos implements Paxos {
         // todo blocking method
         List<Integer> dstIds = conf.getNodeList().stream().map(NodeInfo::getId).collect(Collectors.toList());
         PaxosPacket packet = new PaxosPacket(
-                PacketTarget.PROPOSER, dstIds, selfInfo.getId(), PacketType.PROPOSE_PACKET, null
+                PacketTarget.PROPOSER,
+                dstIds, selfInfo.getId(),
+                PacketType.PROPOSE_PACKET,
+                PrepareLoad.of(selfInfo.getId())
         );
         log.debug("submit packet " + packet);
         try {

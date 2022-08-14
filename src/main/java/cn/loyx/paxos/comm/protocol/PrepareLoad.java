@@ -1,21 +1,13 @@
 package cn.loyx.paxos.comm.protocol;
 
-import java.util.UUID;
+import cn.loyx.paxos.ProposalNo;
 
-public class PrepareLoad implements PaxosPacketLoad{
-    private final UUID billNo;
-    public PrepareLoad(){
-        billNo = UUID.randomUUID();
+public class PrepareLoad extends ProposalNo implements PaxosPacketLoad{
+    public PrepareLoad(int proposerId) {
+        super(proposerId);
     }
 
-    public UUID getBillNo() {
-        return billNo;
-    }
-
-    @Override
-    public String toString() {
-        return "PrepareLoad{" +
-                "billNo=" + billNo +
-                '}';
+    public static PrepareLoad of(int proposerId){
+        return new PrepareLoad(proposerId);
     }
 }

@@ -15,7 +15,6 @@ public class Proposer {
         switch (packet.getType()){
             case PROPOSE_PACKET:
                 return Optional.of(prepare(packet));
-
             case PREPARE_RESPONSE_PACKET:
                 break;
             case ACCEPT_RESPONSE_PACKET:
@@ -32,7 +31,7 @@ public class Proposer {
                 packet.getDstIds(),
                 packet.getSrcId(),
                 PacketType.PROPOSE_PACKET,
-                new PrepareLoad()
+                packet.getLoad()
         );
         log.info("prepare packet: " + preparePacket);
         return preparePacket;
