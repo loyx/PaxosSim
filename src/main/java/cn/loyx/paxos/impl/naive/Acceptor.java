@@ -18,8 +18,8 @@ public class Acceptor {
     private ProposalNo acceptedNo;
     {
         responseNo = ProposalNo.empty();
+        acceptedNo = ProposalNo.empty();
         acceptedValue = null;
-        acceptedNo = null;
     }
 
     public Acceptor(Configuration conf) {

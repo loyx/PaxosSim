@@ -29,6 +29,10 @@ public class Configuration {
         return idList;
     }
 
+    public int getAcceptorNum(){
+        return nodeList.size();
+    }
+
 
     public List<NodeInfo> getNodeList() {
         return nodeList;
