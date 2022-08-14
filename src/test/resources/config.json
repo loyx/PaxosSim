@@ -2,17 +2,17 @@
   "nodeList": [
     {
       "id": 0,
-      "host": "localhost",
+      "ip": "localhost",
       "port": 23333
     },
     {
       "id": 1,
-      "host": "localhost",
+      "ip": "localhost",
       "port": 23334
     },
     {
       "id": 2,
-      "host": "localhost",
+      "ip": "localhost",
       "port": 23335
     }
   ],

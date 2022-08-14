@@ -4,16 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a947b55-fe62-4f56-8e2c-78ed909eceea" name="Changes" comment=":construction: modify PrepareLoad design">
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/protocol/PrepareNo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/protocol/PrepareResponse.java" afterDir="false" />
+    <list default="true" id="4a947b55-fe62-4f56-8e2c-78ed909eceea" name="Changes" comment=":construction: finish Acceptor.onPrepare">
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/protocol/ProposeValue.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/ProposalNo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/ProposalNo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/protocol/PrepareLoad.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/impl/naive/Acceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/impl/naive/Acceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/protocol/PrepareNo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/protocol/PrepareNo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/conf/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/conf/Configuration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/impl/naive/NaivePaxos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/impl/naive/NaivePaxos.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/impl/naive/Proposer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/impl/naive/Proposer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/cn/loyx/paxos/comm/protocol/PaxosPacketTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/cn/loyx/paxos/comm/protocol/PaxosPacketTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/config.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -230,7 +228,7 @@
       <workItem from="1660177039960" duration="1457000" />
       <workItem from="1660215552004" duration="3501000" />
       <workItem from="1660219080724" duration="3797000" />
-      <workItem from="1660385824349" duration="20754000" />
+      <workItem from="1660385824349" duration="26890000" />
     </task>
     <task id="LOCAL-00001" summary=":construction: on working">
       <created>1660048329581</created>
@@ -281,7 +279,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660443907240</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary=":construction: finish Acceptor.onPrepare">
+      <created>1660447882644</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1660447882644</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -306,7 +311,8 @@
     <MESSAGE value=":construction: modify packet design" />
     <MESSAGE value=":construction: fix SocketCommunicator bug; finish Proposer.prepare" />
     <MESSAGE value=":construction: modify PrepareLoad design" />
-    <option name="LAST_COMMIT_MESSAGE" value=":construction: modify PrepareLoad design" />
+    <MESSAGE value=":construction: finish Acceptor.onPrepare" />
+    <option name="LAST_COMMIT_MESSAGE" value=":construction: finish Acceptor.onPrepare" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

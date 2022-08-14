@@ -5,10 +5,7 @@ import cn.loyx.paxos.PaxosValue;
 import cn.loyx.paxos.StateMachineContext;
 import cn.loyx.paxos.comm.Communicator;
 import cn.loyx.paxos.comm.SocketCommunicator;
-import cn.loyx.paxos.comm.protocol.PacketTarget;
-import cn.loyx.paxos.comm.protocol.PacketType;
-import cn.loyx.paxos.comm.protocol.PaxosPacket;
-import cn.loyx.paxos.comm.protocol.PrepareNo;
+import cn.loyx.paxos.comm.protocol.*;
 import cn.loyx.paxos.conf.Configuration;
 import cn.loyx.paxos.conf.NodeInfo;
 import com.google.gson.Gson;
@@ -48,7 +45,7 @@ public class NaivePaxos implements Paxos {
             throw new RuntimeException(e);
         }
         this.conf = configuration;
-        this.selfInfo = configuration.getNodeList().get(configuration.getId());
+        this.selfInfo = configuration.getSelfInfo();
         this.commServer = new SocketCommunicator(selfInfo.getPort());
         this.acceptor = new Acceptor(conf);
         this.proposer = new Proposer(conf);
@@ -56,7 +53,7 @@ public class NaivePaxos implements Paxos {
 
     public NaivePaxos(Configuration configuration){
         this.conf = configuration;
-        this.selfInfo = configuration.getNodeList().get(configuration.getId());
+        this.selfInfo = configuration.getSelfInfo();
         this.commServer = new SocketCommunicator(selfInfo.getPort());
         this.acceptor = new Acceptor(conf);
         this.proposer = new Proposer(conf);
@@ -65,12 +62,11 @@ public class NaivePaxos implements Paxos {
     @Override
     public void propose(PaxosValue value, StateMachineContext context) {
         // todo blocking method
-        List<Integer> dstIds = conf.getNodeList().stream().map(NodeInfo::getId).collect(Collectors.toList());
         PaxosPacket packet = new PaxosPacket(
                 PacketTarget.PROPOSER,
-                dstIds, selfInfo.getId(),
+                null, null,
                 PacketType.PROPOSE_PACKET,
-                new PrepareNo()
+                ProposeValue.of(value)
         );
         log.debug("submit packet " + packet);
         try {
