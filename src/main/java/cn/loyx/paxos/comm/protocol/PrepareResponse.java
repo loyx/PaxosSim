@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 public class PrepareResponse implements PaxosPacketLoad{
-    private final boolean promiseOk;
+    private final boolean prepareOk;
     private final ProposalNo acceptedNo;
     private final PaxosValue acceptedValue;
 

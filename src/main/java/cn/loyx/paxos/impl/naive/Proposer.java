@@ -17,18 +17,21 @@ public class Proposer {
         IDLE, PREPARE, ACCEPT
     }
     private final Configuration conf;
-    private PaxosValue unconfirmedValue;
+    private PaxosValue proposeValue;
+    private PaxosValue confirmedValue;
     private ProposerState state;
 
-    private final Set<Integer> promiseSet;
+    private final Set<Integer> prepareOk;
+    private final Set<Integer> acceptOk;
     private ProposalNo currentNo;
     private ProposalNo acceptorAcceptedNo;
     private PaxosValue acceptorAcceptedValue;
 
     public Proposer(Configuration conf) {
         this.conf = conf;
-        this.unconfirmedValue = null;
-        this.promiseSet = new HashSet<>();
+        this.proposeValue = null;
+        this.prepareOk = new HashSet<>();
+        this.acceptOk = new HashSet<>();
         this.state = ProposerState.IDLE;
         this.acceptorAcceptedValue = null;
         this.acceptorAcceptedNo = ProposalNo.empty();
@@ -43,15 +46,15 @@ public class Proposer {
                 PaxosPacket acceptPacket = onPrepareResponse(packet);
                 return acceptPacket == null ? Optional.empty() : Optional.of(acceptPacket);
             case ACCEPT_RESPONSE_PACKET:
-                break;
+                PaxosPacket rePreparePacket = onAcceptResponse(packet);
+                return rePreparePacket == null ? Optional.empty(): Optional.of(rePreparePacket);
             default:
                 return Optional.empty();
         }
-        return Optional.empty();
     }
 
     private PaxosPacket propose(PaxosPacket packet){
-        this.unconfirmedValue = ((ProposeValue)packet.getLoad()).getValue();
+        this.proposeValue = ((ProposeValue)packet.getLoad()).getValue();
         return prepare();
     }
 
@@ -73,21 +76,21 @@ public class Proposer {
 
     private PaxosPacket onPrepareResponse(PaxosPacket packet){
         if (this.state != ProposerState.PREPARE) {
-            log.info("Proposer is currently in ACCEPT state, do not handle prepare response: " + packet);
+            log.info(String.format("In %s state, not handle prepare response: %s", state, packet));
             return null;
         }
         log.info("Proposer handle a prepare response: " + packet);
         PrepareResponse resp = (PrepareResponse) packet.getLoad();
-        if (resp.isPromiseOk()){
-            this.promiseSet.add(packet.getSrcId());
+        if (resp.isPrepareOk()){
+            this.prepareOk.add(packet.getSrcId());
             if (resp.getAcceptedNo().gt(acceptorAcceptedNo)){
                 acceptorAcceptedNo = resp.getAcceptedNo();
                 acceptorAcceptedValue = resp.getAcceptedValue();
             }
-            if (promiseSet.size() >= conf.getAcceptorNum() / 2 + 1){
+            if (prepareOk.size() >= conf.getAcceptorNum() / 2 + 1){
                 PaxosValue acceptValue;
                 if (acceptorAcceptedValue == null){
-                    acceptValue = unconfirmedValue;
+                    acceptValue = proposeValue;
                 } else {
                     acceptValue = acceptorAcceptedValue;
                 }
@@ -100,6 +103,7 @@ public class Proposer {
 
     private PaxosPacket accept(ProposalNo currentNo, PaxosValue acceptValue){
         this.state = ProposerState.ACCEPT;
+        confirmedValue = acceptValue;
         PaxosPacket acceptPacket = new PaxosPacket(
                 PacketTarget.ACCEPTOR,
                 conf.getIdList(),
@@ -111,12 +115,29 @@ public class Proposer {
         return acceptPacket;
     }
 
-    private void onAcceptResponse(){
-
+    private PaxosPacket onAcceptResponse(PaxosPacket packet){
+        if (this.state != ProposerState.ACCEPT){
+            log.info(String.format("In %s state, not handle accept response: %s", state, packet));
+            return null;
+        }
+        AcceptResponse load = (AcceptResponse) packet.getLoad();
+        if (load.isAcceptOk()){
+            acceptOk.add(packet.getSrcId());
+            if (acceptOk.size() >= conf.getAcceptorNum() / 2 + 1){
+                done();
+            }
+        }
+        // todo early retry
+        return null;
     }
 
     private void done(){
-
+        String result = String.format("propose value %s, %s all machine accept %s",
+                proposeValue,
+                proposeValue.equals(confirmedValue) ? "and" : "but",
+                confirmedValue);
+        log.info(result);
+        state = ProposerState.IDLE;
     }
 
 }
