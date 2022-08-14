@@ -35,7 +35,7 @@ public class Proposer {
     }
 
     public Optional<PaxosPacket> handlePacket(PaxosPacket packet){
-        log.info("Proposer get a packet: " + packet);
+//        log.info("Proposer get a packet: " + packet);
         switch (packet.getType()){
             case PROPOSE_PACKET:
                 return Optional.of(propose(packet));
@@ -72,14 +72,15 @@ public class Proposer {
     }
 
     private PaxosPacket onPrepareResponse(PaxosPacket packet){
-//        log.info("Proposer handle a prepare response: " + packet);
         if (this.state != ProposerState.PREPARE) {
+            log.info("Proposer is currently in ACCEPT state, do not handle prepare response: " + packet);
             return null;
         }
+        log.info("Proposer handle a prepare response: " + packet);
         PrepareResponse resp = (PrepareResponse) packet.getLoad();
         if (resp.isPromiseOk()){
             this.promiseSet.add(packet.getSrcId());
-            if (resp.getAcceptedNo().greeter(acceptorAcceptedNo)){
+            if (resp.getAcceptedNo().gt(acceptorAcceptedNo)){
                 acceptorAcceptedNo = resp.getAcceptedNo();
                 acceptorAcceptedValue = resp.getAcceptedValue();
             }

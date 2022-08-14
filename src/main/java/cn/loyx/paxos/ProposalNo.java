@@ -28,8 +28,12 @@ public class ProposalNo implements Serializable {
         return no;
     }
 
-    public boolean greeter(ProposalNo proposalNo){
+    public boolean gt(ProposalNo proposalNo){
         return no > proposalNo.no;
+    }
+
+    public boolean ge(ProposalNo proposalNo){
+        return no >= proposalNo.no;
     }
 
     @Override

@@ -31,35 +31,54 @@ public class Acceptor {
             case PREPARE_PACKET:
                 return Optional.of(onPrepare(packet));
             case ACCEPT_PACKET:
-                break;
+                return Optional.of(onAccept(packet));
             default:
                 return Optional.empty();
         }
-        return Optional.empty();
     }
 
     PaxosPacket onPrepare(PaxosPacket packet){
         log.info("Acceptor get a prepare packet: " + packet);
         PrepareNo prepareNo = (PrepareNo) packet.getLoad();
-        PrepareResponse response = null;
-        if (prepareNo.greeter(responseNo)){
+        PrepareResponse response;
+        if (prepareNo.gt(responseNo)){
             responseNo = prepareNo;
             response = PrepareResponse.ok(acceptedNo, acceptedValue);
         } else {
             response = PrepareResponse.reject();
         }
 
-        return new PaxosPacket(
+        PaxosPacket responsePacket = new PaxosPacket(
                 PacketTarget.PROPOSER,
                 List.of(packet.getSrcId()),
                 conf.getId(),
                 PacketType.PREPARE_RESPONSE_PACKET,
                 response
         );
+        log.info("Acceptor response preparePacket: " + responsePacket);
+        return responsePacket;
     }
 
-    void onAccept(){
-
+    PaxosPacket onAccept(PaxosPacket packet){
+        log.info("Acceptor get a accept packet: " + packet);
+        AcceptLoad load = (AcceptLoad) packet.getLoad();
+        AcceptResponse response;
+        if (load.getProposalNo().ge(responseNo)){
+            acceptedNo = load.getProposalNo();
+            acceptedValue = load.getAcceptValue();
+            response = AcceptResponse.ok();
+        }else {
+            response = AcceptResponse.reject();
+        }
+        PaxosPacket responsePacket = new PaxosPacket(
+                PacketTarget.PROPOSER,
+                List.of(packet.getSrcId()),
+                conf.getId(),
+                PacketType.ACCEPT_RESPONSE_PACKET,
+                response
+        );
+        log.info("Acceptor response acceptPacket: " + responsePacket);
+        return responsePacket;
     }
 
 }

@@ -71,7 +71,7 @@ public class SocketCommunicator implements Communicator {
 
     @Override
     public void send(String ip, int port, PaxosPacket paxosPacket) {
-        log.info(String.format("send [%s, %s] a packet %s", ip, port, paxosPacket));
+//        log.info(String.format("send [%s, %s] a packet %s", ip, port, paxosPacket));
         try {
             needSendPackets.put(new SocketPacket(ip, port, paxosPacket));
         } catch (InterruptedException e) {
@@ -87,7 +87,7 @@ public class SocketCommunicator implements Communicator {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        log.info("receive a packet: " + take);
+//        log.info("receive a packet: " + take);
         return take;
     }
 }
