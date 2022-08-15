@@ -4,12 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a947b55-fe62-4f56-8e2c-78ed909eceea" name="Changes" comment=":construction: move sendQueue from NaivePaxos to Acceptor and Proposer">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="4a947b55-fe62-4f56-8e2c-78ed909eceea" name="Changes" comment=":construction: finish timer">
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/Communicator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/Communicator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/SocketCommunicator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/SocketCommunicator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/protocol/AcceptLoad.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/protocol/load/AcceptLoad.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/protocol/AcceptResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/protocol/load/AcceptResponseLoad.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/protocol/PacketTarget.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/protocol/PacketTarget.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/protocol/PacketType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/protocol/PacketType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/protocol/PaxosPacket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/protocol/PaxosPacket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/protocol/PaxosPacketLoad.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/protocol/PaxosPacketLoad.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/protocol/PrepareNo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/protocol/load/PrepareLoad.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/protocol/PrepareResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/protocol/load/PrepareResponseLoad.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/protocol/ProposeValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/protocol/load/ProposeLoad.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/impl/naive/Acceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/impl/naive/Acceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/impl/naive/NaivePaxos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/impl/naive/NaivePaxos.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/impl/naive/Proposer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/impl/naive/Proposer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/config1.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/config1.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/config2.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/config2.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/config3.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/config3.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/cn/loyx/paxos/comm/protocol/PaxosPacketTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/cn/loyx/paxos/comm/protocol/PaxosPacketTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -227,7 +237,7 @@
       <workItem from="1660215552004" duration="3501000" />
       <workItem from="1660219080724" duration="3797000" />
       <workItem from="1660385824349" duration="42162000" />
-      <workItem from="1660560238942" duration="5012000" />
+      <workItem from="1660560238942" duration="5616000" />
     </task>
     <task id="LOCAL-00001" summary=":construction: on working">
       <created>1660048329581</created>
@@ -313,7 +323,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660560890810</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary=":construction: finish timer">
+      <created>1660565549628</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1660565549628</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -343,7 +360,8 @@
     <MESSAGE value=":construction: finish Proposer.onPrepareResponse; Proposer.accept;" />
     <MESSAGE value=":construction: finish Acceptor.onAccept" />
     <MESSAGE value=":construction: move sendQueue from NaivePaxos to Acceptor and Proposer" />
-    <option name="LAST_COMMIT_MESSAGE" value=":construction: move sendQueue from NaivePaxos to Acceptor and Proposer" />
+    <MESSAGE value=":construction: finish timer" />
+    <option name="LAST_COMMIT_MESSAGE" value=":construction: finish timer" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

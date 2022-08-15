@@ -1,6 +1,6 @@
 package cn.loyx.paxos.comm;
 
-import cn.loyx.paxos.comm.protocol.PaxosPacket;
+import cn.loyx.paxos.protocol.PaxosPacket;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 

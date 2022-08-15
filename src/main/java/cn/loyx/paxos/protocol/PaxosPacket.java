@@ -1,8 +1,6 @@
-package cn.loyx.paxos.comm.protocol;
+package cn.loyx.paxos.protocol;
 
 import lombok.Data;
-
-import cn.loyx.paxos.PaxosValue;
 
 import java.io.Serializable;
 import java.util.List;

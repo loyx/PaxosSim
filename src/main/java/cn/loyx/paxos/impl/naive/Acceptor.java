@@ -2,8 +2,12 @@ package cn.loyx.paxos.impl.naive;
 
 import cn.loyx.paxos.PaxosValue;
 import cn.loyx.paxos.ProposalNo;
-import cn.loyx.paxos.comm.protocol.*;
 import cn.loyx.paxos.conf.Configuration;
+import cn.loyx.paxos.protocol.*;
+import cn.loyx.paxos.protocol.load.AcceptLoad;
+import cn.loyx.paxos.protocol.load.AcceptResponseLoad;
+import cn.loyx.paxos.protocol.load.PrepareLoad;
+import cn.loyx.paxos.protocol.load.PrepareResponseLoad;
 import lombok.extern.log4j.Log4j;
 
 import java.util.*;
@@ -48,13 +52,13 @@ public class Acceptor {
 
     PaxosPacket onPrepare(PaxosPacket packet){
         log.info("Acceptor get a prepare packet: " + packet);
-        PrepareNo prepareNo = (PrepareNo) packet.getLoad();
-        PrepareResponse response;
-        if (prepareNo.gt(responseNo)){
-            responseNo = prepareNo;
-            response = PrepareResponse.ok(acceptedNo, acceptedValue);
+        PrepareLoad prepareLoad = (PrepareLoad) packet.getLoad();
+        PrepareResponseLoad response;
+        if (prepareLoad.gt(responseNo)){
+            responseNo = prepareLoad;
+            response = PrepareResponseLoad.ok(acceptedNo, acceptedValue);
         } else {
-            response = PrepareResponse.reject();
+            response = PrepareResponseLoad.reject();
         }
 
         PaxosPacket responsePacket = new PaxosPacket(
@@ -71,13 +75,13 @@ public class Acceptor {
     PaxosPacket onAccept(PaxosPacket packet){
         log.info("Acceptor get a accept packet: " + packet);
         AcceptLoad load = (AcceptLoad) packet.getLoad();
-        AcceptResponse response;
+        AcceptResponseLoad response;
         if (load.getProposalNo().ge(responseNo)){
             acceptedNo = load.getProposalNo();
             acceptedValue = load.getAcceptValue();
-            response = AcceptResponse.ok();
+            response = AcceptResponseLoad.ok();
         }else {
-            response = AcceptResponse.reject();
+            response = AcceptResponseLoad.reject();
         }
         PaxosPacket responsePacket = new PaxosPacket(
                 PacketTarget.PROPOSER,

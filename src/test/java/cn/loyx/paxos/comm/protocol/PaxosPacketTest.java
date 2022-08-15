@@ -1,7 +1,9 @@
 package cn.loyx.paxos.comm.protocol;
 
-import cn.loyx.paxos.PaxosValue;
-import lombok.Data;
+import cn.loyx.paxos.protocol.*;
+import cn.loyx.paxos.protocol.PaxosPacketLoad;
+import cn.loyx.paxos.protocol.load.PrepareLoad;
+import cn.loyx.paxos.protocol.load.PrepareResponseLoad;
 import org.junit.jupiter.api.Test;
 
 import java.io.*;
@@ -13,8 +15,8 @@ class PaxosPacketTest {
     @Test
     void TestSerializable() throws IOException, ClassNotFoundException {
         PaxosPacketLoad[] loads = {
-                new PrepareNo(),
-                PrepareResponse.reject()
+                new PrepareLoad(),
+                PrepareResponseLoad.reject()
         };
         for (PaxosPacketLoad load : loads) {
             PaxosPacket paxosPacket = new PaxosPacket(PacketTarget.PROPOSER, Arrays.asList(1,2,3),1, PacketType.PREPARE_PACKET, load);

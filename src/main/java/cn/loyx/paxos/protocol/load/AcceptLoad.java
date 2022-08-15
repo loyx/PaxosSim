@@ -1,11 +1,12 @@
-package cn.loyx.paxos.comm.protocol;
+package cn.loyx.paxos.protocol.load;
 
 import cn.loyx.paxos.PaxosValue;
 import cn.loyx.paxos.ProposalNo;
+import cn.loyx.paxos.protocol.PaxosPacketLoad;
 import lombok.Data;
 
 @Data
-public class AcceptLoad implements PaxosPacketLoad{
+public class AcceptLoad implements PaxosPacketLoad {
     private final ProposalNo proposalNo;
     private final PaxosValue acceptValue;
 

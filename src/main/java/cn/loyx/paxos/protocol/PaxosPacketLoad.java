@@ -1,4 +1,4 @@
-package cn.loyx.paxos.comm.protocol;
+package cn.loyx.paxos.protocol;
 
 import java.io.Serializable;
 

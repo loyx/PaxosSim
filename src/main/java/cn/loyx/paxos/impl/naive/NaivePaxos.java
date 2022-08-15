@@ -5,16 +5,18 @@ import cn.loyx.paxos.PaxosValue;
 import cn.loyx.paxos.StateMachineContext;
 import cn.loyx.paxos.comm.Communicator;
 import cn.loyx.paxos.comm.SocketCommunicator;
-import cn.loyx.paxos.comm.protocol.*;
 import cn.loyx.paxos.conf.Configuration;
 import cn.loyx.paxos.conf.NodeInfo;
+import cn.loyx.paxos.protocol.PacketTarget;
+import cn.loyx.paxos.protocol.PacketType;
+import cn.loyx.paxos.protocol.PaxosPacket;
+import cn.loyx.paxos.protocol.load.ProposeLoad;
 import com.google.gson.Gson;
 import lombok.extern.log4j.Log4j;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Optional;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -64,7 +66,7 @@ public class NaivePaxos implements Paxos {
                 PacketTarget.PROPOSER,
                 null, null,
                 PacketType.PROPOSE_PACKET,
-                ProposeValue.of(value)
+                ProposeLoad.of(value)
         );
         log.debug("submit packet " + packet);
         try {

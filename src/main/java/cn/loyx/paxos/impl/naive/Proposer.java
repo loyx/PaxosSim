@@ -2,8 +2,9 @@ package cn.loyx.paxos.impl.naive;
 
 import cn.loyx.paxos.PaxosValue;
 import cn.loyx.paxos.ProposalNo;
-import cn.loyx.paxos.comm.protocol.*;
 import cn.loyx.paxos.conf.Configuration;
+import cn.loyx.paxos.protocol.*;
+import cn.loyx.paxos.protocol.load.*;
 import lombok.extern.log4j.Log4j;
 
 import java.util.HashSet;
@@ -65,14 +66,14 @@ public class Proposer {
     }
 
     private PaxosPacket propose(PaxosPacket packet){
-        this.proposeValue = ((ProposeValue)packet.getLoad()).getValue();
+        this.proposeValue = ((ProposeLoad)packet.getLoad()).getValue();
         return prepare();
     }
 
     private PaxosPacket prepare(){
         this.state = ProposerState.WAIT_PREPARE_RESP;
         initialStatus();
-        PrepareNo newNo = PrepareNo.newNo();
+        PrepareLoad newNo = PrepareLoad.newNo();
         currentNo = newNo;
         PaxosPacket preparePacket = new PaxosPacket(
                 PacketTarget.ACCEPTOR,
@@ -126,7 +127,7 @@ public class Proposer {
             return null;
         }
         log.info("Proposer handle a prepare response: " + packet);
-        PrepareResponse resp = (PrepareResponse) packet.getLoad();
+        PrepareResponseLoad resp = (PrepareResponseLoad) packet.getLoad();
         if (resp.isPrepareOk()){
             this.prepareOk.add(packet.getSrcId());
             if (resp.getAcceptedNo().gt(acceptorAcceptedNo)){
@@ -166,7 +167,7 @@ public class Proposer {
             log.info(String.format("In %s state, not handle accept response: %s", state, packet));
             return null;
         }
-        AcceptResponse load = (AcceptResponse) packet.getLoad();
+        AcceptResponseLoad load = (AcceptResponseLoad) packet.getLoad();
         if (load.isAcceptOk()){
             acceptOk.add(packet.getSrcId());
             if (acceptOk.size() >= conf.getAcceptorNum() / 2 + 1){
