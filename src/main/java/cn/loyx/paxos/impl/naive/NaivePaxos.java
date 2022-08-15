@@ -4,6 +4,7 @@ import cn.loyx.paxos.Paxos;
 import cn.loyx.paxos.PaxosValue;
 import cn.loyx.paxos.StateMachineContext;
 import cn.loyx.paxos.comm.Communicator;
+import cn.loyx.paxos.comm.CommunicatorFactory;
 import cn.loyx.paxos.comm.SocketCommunicator;
 import cn.loyx.paxos.conf.Configuration;
 import cn.loyx.paxos.conf.NodeInfo;
@@ -36,25 +37,22 @@ public class NaivePaxos implements Paxos {
         sendQueue = new LinkedBlockingQueue<>();
     }
 
+    public NaivePaxos(String configFilePath, CommunicatorFactory factory){
+        this(Configuration.fromFile(configFilePath), factory);
+    }
+
     public NaivePaxos(String configFilePath){
-        Gson gson = new Gson();
-        Configuration configuration;
-        try {
-            configuration = gson.fromJson(Files.newBufferedReader(Path.of(configFilePath)), Configuration.class);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        this.conf = configuration;
-        this.selfInfo = configuration.getSelfInfo();
-        this.commServer = new SocketCommunicator(selfInfo.getPort());
-        this.acceptor = new Acceptor(conf, sendQueue);
-        this.proposer = new Proposer(conf, sendQueue);
+        this(Configuration.fromFile(configFilePath));
     }
 
     public NaivePaxos(Configuration configuration){
+        this(configuration, SocketCommunicator::new);
+    }
+
+    public NaivePaxos(Configuration configuration, CommunicatorFactory factory){
         this.conf = configuration;
         this.selfInfo = configuration.getSelfInfo();
-        this.commServer = new SocketCommunicator(selfInfo.getPort());
+        this.commServer = factory.getCommunicator(configuration.getSelfInfo().getPort());
         this.acceptor = new Acceptor(conf, sendQueue);
         this.proposer = new Proposer(conf, sendQueue);
     }

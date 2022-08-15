@@ -1,5 +1,10 @@
 package cn.loyx.paxos.conf;
 
+import com.google.gson.Gson;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,6 +15,14 @@ public class Configuration {
     private final String dataPath;
 
     private List<Integer> idList = null;
+
+    public static Configuration fromFile(String filePath){
+        try {
+            return new Gson().fromJson(Files.newBufferedReader(Path.of(filePath)), Configuration.class);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public Configuration(List<NodeInfo> nodeList, int id, int timeout, String dataPath) {
         this.nodeList = nodeList;
