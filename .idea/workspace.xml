@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a947b55-fe62-4f56-8e2c-78ed909eceea" name="Changes" comment=":construction: modify packet design">
+    <list default="true" id="4a947b55-fe62-4f56-8e2c-78ed909eceea" name="Changes" comment=":construction: move sendQueue from NaivePaxos to Acceptor and Proposer">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/impl/naive/Acceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/impl/naive/Acceptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/impl/naive/NaivePaxos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/impl/naive/NaivePaxos.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/impl/naive/Proposer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/impl/naive/Proposer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/config1.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/config1.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/config2.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/config2.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/config3.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/config3.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -226,7 +227,7 @@
       <workItem from="1660215552004" duration="3501000" />
       <workItem from="1660219080724" duration="3797000" />
       <workItem from="1660385824349" duration="42162000" />
-      <workItem from="1660560238942" duration="452000" />
+      <workItem from="1660560238942" duration="5012000" />
     </task>
     <task id="LOCAL-00001" summary=":construction: on working">
       <created>1660048329581</created>
@@ -305,7 +306,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660471818928</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary=":construction: move sendQueue from NaivePaxos to Acceptor and Proposer">
+      <created>1660560890810</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1660560890810</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -334,7 +342,8 @@
     <MESSAGE value=":construction: modify Configuration design; Add ProposeValue" />
     <MESSAGE value=":construction: finish Proposer.onPrepareResponse; Proposer.accept;" />
     <MESSAGE value=":construction: finish Acceptor.onAccept" />
-    <option name="LAST_COMMIT_MESSAGE" value=":construction: finish Acceptor.onAccept" />
+    <MESSAGE value=":construction: move sendQueue from NaivePaxos to Acceptor and Proposer" />
+    <option name="LAST_COMMIT_MESSAGE" value=":construction: move sendQueue from NaivePaxos to Acceptor and Proposer" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
