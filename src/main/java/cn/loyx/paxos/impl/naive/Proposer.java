@@ -7,8 +7,8 @@ import cn.loyx.paxos.conf.Configuration;
 import lombok.extern.log4j.Log4j;
 
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
+import java.util.concurrent.BlockingQueue;
 
 @Log4j
 public class Proposer {
@@ -17,6 +17,7 @@ public class Proposer {
         IDLE, PREPARE, ACCEPT
     }
     private final Configuration conf;
+    private final BlockingQueue<PaxosPacket> sendQueue;
     private PaxosValue proposeValue;
     private PaxosValue confirmedValue;
     private ProposerState state;
@@ -27,8 +28,9 @@ public class Proposer {
     private ProposalNo acceptorAcceptedNo;
     private PaxosValue acceptorAcceptedValue;
 
-    public Proposer(Configuration conf) {
+    public Proposer(Configuration conf, BlockingQueue<PaxosPacket> sendQueue) {
         this.conf = conf;
+        this.sendQueue = sendQueue;
         this.proposeValue = null;
         this.prepareOk = new HashSet<>();
         this.acceptOk = new HashSet<>();
@@ -37,19 +39,23 @@ public class Proposer {
         this.acceptorAcceptedNo = ProposalNo.empty();
     }
 
-    public Optional<PaxosPacket> handlePacket(PaxosPacket packet){
-//        log.info("Proposer get a packet: " + packet);
+    public void handlePacket(PaxosPacket packet) throws InterruptedException {
+        PaxosPacket handledResult;
         switch (packet.getType()){
             case PROPOSE_PACKET:
-                return Optional.of(propose(packet));
+                handledResult = propose(packet);
+                break;
             case PREPARE_RESPONSE_PACKET:
-                PaxosPacket acceptPacket = onPrepareResponse(packet);
-                return acceptPacket == null ? Optional.empty() : Optional.of(acceptPacket);
+                handledResult = onPrepareResponse(packet);
+                break;
             case ACCEPT_RESPONSE_PACKET:
-                PaxosPacket rePreparePacket = onAcceptResponse(packet);
-                return rePreparePacket == null ? Optional.empty(): Optional.of(rePreparePacket);
+                handledResult = onAcceptResponse(packet);
+                break;
             default:
-                return Optional.empty();
+                handledResult = null;
+        }
+        if (handledResult != null) {
+            sendQueue.put(handledResult);
         }
     }
 

@@ -14,11 +14,9 @@ import lombok.extern.log4j.Log4j;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
-import java.util.stream.Collectors;
 
 @Log4j
 public class NaivePaxos implements Paxos {
@@ -47,16 +45,16 @@ public class NaivePaxos implements Paxos {
         this.conf = configuration;
         this.selfInfo = configuration.getSelfInfo();
         this.commServer = new SocketCommunicator(selfInfo.getPort());
-        this.acceptor = new Acceptor(conf);
-        this.proposer = new Proposer(conf);
+        this.acceptor = new Acceptor(conf, sendQueue);
+        this.proposer = new Proposer(conf, sendQueue);
     }
 
     public NaivePaxos(Configuration configuration){
         this.conf = configuration;
         this.selfInfo = configuration.getSelfInfo();
         this.commServer = new SocketCommunicator(selfInfo.getPort());
-        this.acceptor = new Acceptor(conf);
-        this.proposer = new Proposer(conf);
+        this.acceptor = new Acceptor(conf, sendQueue);
+        this.proposer = new Proposer(conf, sendQueue);
     }
 
     @Override
@@ -108,21 +106,17 @@ public class NaivePaxos implements Paxos {
             while (true){
                 try {
                     PaxosPacket packet = processQueue.take();
-                    Optional<PaxosPacket> result;
                     switch (packet.getTarget()) {
                         case ACCEPTOR:
-                            result = acceptor.handlePacket(packet);
+                            acceptor.handlePacket(packet);
                             break;
                         case PROPOSER:
-                            result = proposer.handlePacket(packet);
+                            proposer.handlePacket(packet);
                             break;
                         case LEARNER:
                             System.out.println("no implement yet");
                         default:
-                            result = Optional.empty();
-                    }
-                    if (result.isPresent()) {
-                        sendQueue.put(result.get());
+                            log.info("Unknown packet: " + packet);
                     }
                 } catch (InterruptedException e){
                     throw new RuntimeException(e);

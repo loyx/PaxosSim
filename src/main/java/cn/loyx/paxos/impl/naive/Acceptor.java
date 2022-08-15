@@ -7,11 +7,13 @@ import cn.loyx.paxos.conf.Configuration;
 import lombok.extern.log4j.Log4j;
 
 import java.util.*;
+import java.util.concurrent.BlockingQueue;
 
 @Log4j
 public class Acceptor {
 
-    Configuration conf;
+    private final Configuration conf;
+    private final BlockingQueue<PaxosPacket> sendQueue;
 
     private ProposalNo responseNo;
     private PaxosValue acceptedValue;
@@ -22,18 +24,25 @@ public class Acceptor {
         acceptedValue = null;
     }
 
-    public Acceptor(Configuration conf) {
+    public Acceptor(Configuration conf, BlockingQueue<PaxosPacket> sendQueue) {
         this.conf = conf;
+        this.sendQueue = sendQueue;
     }
 
-    public Optional<PaxosPacket> handlePacket(PaxosPacket packet){
+    public void handlePacket(PaxosPacket packet) throws InterruptedException {
+        PaxosPacket handleResult;
         switch (packet.getType()){
             case PREPARE_PACKET:
-                return Optional.of(onPrepare(packet));
+                handleResult = onPrepare(packet);
+                break;
             case ACCEPT_PACKET:
-                return Optional.of(onAccept(packet));
+                handleResult = onAccept(packet);
+                break;
             default:
-                return Optional.empty();
+                handleResult = null;
+        }
+        if (handleResult != null){
+            sendQueue.put(handleResult);
         }
     }
 
