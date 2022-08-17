@@ -4,11 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a947b55-fe62-4f56-8e2c-78ed909eceea" name="Changes" comment=":bookmark: finish cn.loyx.paxos">
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/comm/CommunicatorFactory.java" afterDir="false" />
+    <list default="true" id="4a947b55-fe62-4f56-8e2c-78ed909eceea" name="Changes" comment=":recycle: refactor NaivePaxos constructor impl">
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/simluator/ControllableNetwork.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/simluator/DelayedPacket.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/simluator/NetworkLink.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/simluator/util/ChangeableDelayQueue.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/simluator/util/ChangeableDelayed.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/cn/loyx/paxossim/simluator/util/ChangeableDelayQueueTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022_8_9_18_48_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022_8_9_18_48__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/conf/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/conf/Configuration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/impl/naive/NaivePaxos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxos/impl/naive/NaivePaxos.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,9 +24,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
+        <option value="Interface" />
         <option value="JUnit5 Test Class" />
         <option value="Class" />
-        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -70,20 +75,22 @@
       <recent name="" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="cn.loyx.paxossim.simluator" />
       <recent name="cn.loyx.paxos.impl" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="cn.loyx.paxossim.simluator.util" />
       <recent name="cn.loyx.paxos.comm.protocol" />
       <recent name="cn.loyx.paxos.impl" />
       <recent name="cn.loyx.paxos.conf" />
       <recent name="cn.loyx.paxossim.simluator" />
-      <recent name="cn.loyx.paxos" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="cn.loyx.paxossim.simluator" />
       <recent name="cn.loyx.intergration.test1" />
     </key>
   </component>
-  <component name="RunManager" selected="Compound.siteTest">
+  <component name="RunManager" selected="JUnit.ChangeableDelayQueueTest.testDelayQueue">
     <configuration name="site1" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cn.loyx.intergration.test1.site1" />
       <module name="PaxosSim" />
@@ -139,49 +146,65 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ConfigurationTest.testFromGson" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ChangeableDelayQueueTest.randomOrderPutAndTask" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="PaxosSim" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="cn.loyx.paxos.conf.*" />
+          <option name="PATTERN" value="cn.loyx.paxossim.simluator.util.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="cn.loyx.paxos.conf" />
-      <option name="MAIN_CLASS_NAME" value="cn.loyx.paxos.conf.ConfigurationTest" />
-      <option name="METHOD_NAME" value="testFromGson" />
+      <option name="PACKAGE_NAME" value="cn.loyx.paxossim.simluator.util" />
+      <option name="MAIN_CLASS_NAME" value="cn.loyx.paxossim.simluator.util.ChangeableDelayQueueTest" />
+      <option name="METHOD_NAME" value="randomOrderPutAndTask" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="NaivePaxosTest.submit" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ChangeableDelayQueueTest.reversOrderPutAndTask" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="PaxosSim" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="cn.loyx.paxos.impl.*" />
+          <option name="PATTERN" value="cn.loyx.paxossim.simluator.util.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="cn.loyx.paxos.impl" />
-      <option name="MAIN_CLASS_NAME" value="cn.loyx.paxos.impl.NaivePaxosTest" />
-      <option name="METHOD_NAME" value="submit" />
+      <option name="PACKAGE_NAME" value="cn.loyx.paxossim.simluator.util" />
+      <option name="MAIN_CLASS_NAME" value="cn.loyx.paxossim.simluator.util.ChangeableDelayQueueTest" />
+      <option name="METHOD_NAME" value="reversOrderPutAndTask" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PaxosPacketTest.TestSerializable" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ChangeableDelayQueueTest.testChangeDelay" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="PaxosSim" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="cn.loyx.paxos.comm.protocol.*" />
+          <option name="PATTERN" value="cn.loyx.paxossim.simluator.util.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="cn.loyx.paxos.comm.protocol" />
-      <option name="MAIN_CLASS_NAME" value="cn.loyx.paxos.comm.protocol.PaxosPacketTest" />
-      <option name="METHOD_NAME" value="TestSerializable" />
+      <option name="PACKAGE_NAME" value="cn.loyx.paxossim.simluator.util" />
+      <option name="MAIN_CLASS_NAME" value="cn.loyx.paxossim.simluator.util.ChangeableDelayQueueTest" />
+      <option name="METHOD_NAME" value="testChangeDelay" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ChangeableDelayQueueTest.testDelayQueue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="PaxosSim" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cn.loyx.paxossim.simluator.util.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="cn.loyx.paxossim.simluator.util" />
+      <option name="MAIN_CLASS_NAME" value="cn.loyx.paxossim.simluator.util.ChangeableDelayQueueTest" />
+      <option name="METHOD_NAME" value="testDelayQueue" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -193,15 +216,17 @@
       <item itemvalue="Application.site3" />
       <item itemvalue="Compound.siteTest" />
       <item itemvalue="JUnit.ALL-Paoxs" />
-      <item itemvalue="JUnit.ConfigurationTest.testFromGson" />
-      <item itemvalue="JUnit.NaivePaxosTest.submit" />
-      <item itemvalue="JUnit.PaxosPacketTest.TestSerializable" />
+      <item itemvalue="JUnit.ChangeableDelayQueueTest.testDelayQueue" />
+      <item itemvalue="JUnit.ChangeableDelayQueueTest.randomOrderPutAndTask" />
+      <item itemvalue="JUnit.ChangeableDelayQueueTest.reversOrderPutAndTask" />
+      <item itemvalue="JUnit.ChangeableDelayQueueTest.testChangeDelay" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ConfigurationTest.testFromGson" />
-        <item itemvalue="JUnit.NaivePaxosTest.submit" />
-        <item itemvalue="JUnit.PaxosPacketTest.TestSerializable" />
+        <item itemvalue="JUnit.ChangeableDelayQueueTest.testDelayQueue" />
+        <item itemvalue="JUnit.ChangeableDelayQueueTest.testChangeDelay" />
+        <item itemvalue="JUnit.ChangeableDelayQueueTest.randomOrderPutAndTask" />
+        <item itemvalue="JUnit.ChangeableDelayQueueTest.reversOrderPutAndTask" />
       </list>
     </recent_temporary>
   </component>
@@ -227,6 +252,8 @@
       <workItem from="1660219080724" duration="3797000" />
       <workItem from="1660385824349" duration="42162000" />
       <workItem from="1660560238942" duration="8256000" />
+      <workItem from="1660647014773" duration="4784000" />
+      <workItem from="1660657277552" duration="11352000" />
     </task>
     <task id="LOCAL-00001" summary=":construction: on working">
       <created>1660048329581</created>
