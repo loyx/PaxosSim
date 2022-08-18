@@ -1,5 +1,6 @@
 package cn.loyx.paxossim.simluator.util;
 
+import javax.xml.stream.FactoryConfigurationError;
 import java.util.*;
 import java.util.concurrent.DelayQueue;
 import java.util.concurrent.Delayed;
@@ -68,6 +69,10 @@ public class ChangeableDelayQueue<E extends ChangeableDelayed> {
 
     public void changeDelay(E element, long offset){
         this.changeDelay(element.hashCode(), offset);
+    }
+
+    public void cancelTask(E element){
+        elements.remove(element.hashCode());
     }
 
 

@@ -42,5 +42,15 @@ public class ControllableNetwork implements Communicator {
     }
 
 
+    public void delayPacket(long packetId, long offset){
+        DelayedPacket delayedPacket = packetsMap.get(packetId);
+        CDQueue.changeDelay(delayedPacket, offset);
+    }
+
+    public void  lossPacket(long packetId){
+        DelayedPacket delayedPacket = packetsMap.get(packetId);
+        CDQueue.cancelTask(delayedPacket);
+    }
+
 
 }

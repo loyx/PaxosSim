@@ -5,13 +5,10 @@ import org.apache.log4j.BasicConfigurator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.DelayQueue;
-import java.util.concurrent.Delayed;
 import java.util.concurrent.TimeUnit;
 
 @Log4j
@@ -117,19 +114,18 @@ class ChangeableDelayQueueTest {
     }
 
     @Test
-    void testDelayQueue() throws InterruptedException {
-        long delay = System.currentTimeMillis() + (10 * 1000);
-        ChangeableDelayQueue.PollTask pollTask = new ChangeableDelayQueue.PollTask(delay, 1);
-        DelayQueue<ChangeableDelayQueue.PollTask> pollTasks = new DelayQueue<>();
-        pollTasks.add(pollTask);
+    void testCancel(){
+        List<ChangeableDelayInt> ints = new ArrayList<>();
+        for (Integer integer : Arrays.asList(1, 5, 10, 15, 20)) {
+            ChangeableDelayInt changeableDelayInt = new ChangeableDelayInt(integer, integer);
+            ints.add(changeableDelayInt);
+            queue.put(changeableDelayInt);
+        }
         new Thread(()->{
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            pollTask.delay += 5000;
+            queue.cancelTask(ints.get(1));
+            queue.cancelTask(ints.get(3));
         }).start();
-        System.out.println(pollTasks.take());
+        take();
+
     }
 }
