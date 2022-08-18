@@ -7,4 +7,5 @@ public class NodeInfo {
     private int id;
     private String ip;
     private int port;
+    private int timeout;
 }
