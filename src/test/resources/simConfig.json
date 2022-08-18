@@ -1,0 +1,22 @@
+{
+  "nodeList": [
+    {
+      "id": 0,
+      "ip": "localhost",
+      "port": 23333,
+      "timeout": 5000
+    },
+    {
+      "id": 1,
+      "ip": "localhost",
+      "port": 23334,
+      "timeout": 5000
+    },
+    {
+      "id": 2,
+      "ip": "localhost",
+      "port": 23335,
+      "timeout": 5000
+    }
+  ]
+}

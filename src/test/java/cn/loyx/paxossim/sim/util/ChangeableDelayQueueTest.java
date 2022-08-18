@@ -1,4 +1,4 @@
-package cn.loyx.paxossim.simluator.util;
+package cn.loyx.paxossim.sim.util;
 
 import lombok.extern.log4j.Log4j;
 import org.apache.log4j.BasicConfigurator;

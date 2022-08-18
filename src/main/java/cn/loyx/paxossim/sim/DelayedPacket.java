@@ -1,7 +1,7 @@
-package cn.loyx.paxossim.simluator;
+package cn.loyx.paxossim.sim;
 
 import cn.loyx.paxos.protocol.PaxosPacket;
-import cn.loyx.paxossim.simluator.util.ChangeableDelayed;
+import cn.loyx.paxossim.sim.util.ChangeableDelayed;
 
 import java.util.Objects;
 
@@ -14,7 +14,7 @@ class DelayedPacket implements ChangeableDelayed {
     private final PaxosPacket packet;
 
     public DelayedPacket(long delayTime, String ip, int port, PaxosPacket packet) {
-        this.delayTime = delayTime;
+        this.delayTime = delayTime*1_000 + System.currentTimeMillis();
         this.ip = ip;
         this.port = port;
         this.packet = packet;

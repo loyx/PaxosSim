@@ -62,7 +62,7 @@ public class NaivePaxos implements Paxos {
                 PacketType.PROPOSE_PACKET,
                 ProposeLoad.of(value)
         );
-        log.debug("submit packet " + packet);
+        log.info("submit packet " + packet);
         try {
             processQueue.put(packet);
         } catch (InterruptedException e) {

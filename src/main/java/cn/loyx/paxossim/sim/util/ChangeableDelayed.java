@@ -1,4 +1,4 @@
-package cn.loyx.paxossim.simluator.util;
+package cn.loyx.paxossim.sim.util;
 
 public interface ChangeableDelayed {
     long getDelay();

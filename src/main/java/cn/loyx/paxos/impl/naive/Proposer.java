@@ -82,7 +82,7 @@ public class Proposer {
                 PacketType.PREPARE_PACKET,
                 newNo
         );
-        log.info("Proposer send a prepare packet: " + preparePacket);
+        log.info(String.format("Proposer(%d) send a prepare packet: %s", conf.getId(), preparePacket));
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
@@ -126,7 +126,7 @@ public class Proposer {
             log.info(String.format("In %s state, not handle prepare response: %s", state, packet));
             return null;
         }
-        log.info("Proposer handle a prepare response: " + packet);
+        log.info(String.format("Proposer(%d) handle a prepare response: %s", conf.getId(), packet));
         PrepareResponseLoad resp = (PrepareResponseLoad) packet.getLoad();
         if (resp.isPrepareOk()){
             this.prepareOk.add(packet.getSrcId());
@@ -158,7 +158,7 @@ public class Proposer {
                 PacketType.ACCEPT_PACKET,
                 AcceptLoad.of(currentNo, acceptValue)
         );
-        log.info("Proposer send a accept packet: " + acceptPacket);
+        log.info(String.format("Proposer(%d) send a accept packet: %s",conf.getId(), acceptPacket));
         return acceptPacket;
     }
 
@@ -180,7 +180,8 @@ public class Proposer {
 
     private void done(){
         this.state = ProposerState.FINISH;
-        String result = String.format("propose value %s, %s all machine accept %s",
+        String result = String.format("propose(%d) value %s, %s all machine accept %s",
+                conf.getId(),
                 proposeValue,
                 proposeValue.equals(confirmedValue) ? "and" : "but",
                 confirmedValue);

@@ -10,6 +10,7 @@ import cn.loyx.paxos.protocol.load.PrepareLoad;
 import cn.loyx.paxos.protocol.load.PrepareResponseLoad;
 import lombok.extern.log4j.Log4j;
 
+import javax.swing.*;
 import java.util.*;
 import java.util.concurrent.BlockingQueue;
 
@@ -51,7 +52,7 @@ public class Acceptor {
     }
 
     PaxosPacket onPrepare(PaxosPacket packet){
-        log.info("Acceptor get a prepare packet: " + packet);
+        log.info(String.format("Acceptor(%d) get a prepare packet: %s", conf.getId(), packet));
         PrepareLoad prepareLoad = (PrepareLoad) packet.getLoad();
         PrepareResponseLoad response;
         if (prepareLoad.gt(responseNo)){
@@ -68,12 +69,12 @@ public class Acceptor {
                 PacketType.PREPARE_RESPONSE_PACKET,
                 response
         );
-        log.info("Acceptor response preparePacket: " + responsePacket);
+        log.info(String.format("Acceptor(%d) response preparePacket: %s",conf.getId(), responsePacket));
         return responsePacket;
     }
 
     PaxosPacket onAccept(PaxosPacket packet){
-        log.info("Acceptor get a accept packet: " + packet);
+        log.info(String.format("Acceptor(%d) get a accept packet: %s", conf.getId(), packet));
         AcceptLoad load = (AcceptLoad) packet.getLoad();
         AcceptResponseLoad response;
         if (load.getProposalNo().ge(responseNo)){
@@ -90,7 +91,7 @@ public class Acceptor {
                 PacketType.ACCEPT_RESPONSE_PACKET,
                 response
         );
-        log.info("Acceptor response acceptPacket: " + responsePacket);
+        log.info(String.format("Acceptor(%d) response acceptPacket: %s",conf.getId(), responsePacket));
         return responsePacket;
     }
 
