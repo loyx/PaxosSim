@@ -4,16 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a947b55-fe62-4f56-8e2c-78ed909eceea" name="Changes" comment=":recycle: refactor NaivePaxos constructor impl">
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/simluator/ControllableNetwork.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/simluator/DelayedPacket.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/simluator/NetworkLink.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/simluator/util/ChangeableDelayQueue.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/simluator/util/ChangeableDelayed.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/cn/loyx/paxossim/simluator/util/ChangeableDelayQueueTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022_8_9_18_48_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022_8_9_18_48__Changes_.xml" beforeDir="false" />
+    <list default="true" id="4a947b55-fe62-4f56-8e2c-78ed909eceea" name="Changes" comment=":sparkles: add ChangeableDelayQueue">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/simluator/ControllableNetwork.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/simluator/ControllableNetwork.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/simluator/util/ChangeableDelayQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/simluator/util/ChangeableDelayQueue.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -253,7 +247,7 @@
       <workItem from="1660385824349" duration="42162000" />
       <workItem from="1660560238942" duration="8256000" />
       <workItem from="1660647014773" duration="4784000" />
-      <workItem from="1660657277552" duration="11352000" />
+      <workItem from="1660657277552" duration="13687000" />
     </task>
     <task id="LOCAL-00001" summary=":construction: on working">
       <created>1660048329581</created>
@@ -353,7 +347,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660566038727</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary=":sparkles: add ChangeableDelayQueue">
+      <created>1660740642320</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1660740642320</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -385,7 +386,8 @@
     <MESSAGE value=":construction: move sendQueue from NaivePaxos to Acceptor and Proposer" />
     <MESSAGE value=":construction: finish timer" />
     <MESSAGE value=":bookmark: finish cn.loyx.paxos" />
-    <option name="LAST_COMMIT_MESSAGE" value=":bookmark: finish cn.loyx.paxos" />
+    <MESSAGE value=":sparkles: add ChangeableDelayQueue" />
+    <option name="LAST_COMMIT_MESSAGE" value=":sparkles: add ChangeableDelayQueue" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

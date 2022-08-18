@@ -12,12 +12,8 @@ import cn.loyx.paxos.protocol.PacketTarget;
 import cn.loyx.paxos.protocol.PacketType;
 import cn.loyx.paxos.protocol.PaxosPacket;
 import cn.loyx.paxos.protocol.load.ProposeLoad;
-import com.google.gson.Gson;
 import lombok.extern.log4j.Log4j;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 

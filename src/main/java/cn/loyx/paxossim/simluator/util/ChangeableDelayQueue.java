@@ -34,7 +34,7 @@ public class ChangeableDelayQueue<E extends ChangeableDelayed> {
         public String toString() {
             return "pollTask{" +
                     "delay=" + getDelay(TimeUnit.MILLISECONDS) +
-                    "s, taskHashCode=" + taskHashCode +
+                    "ms, taskHashCode=" + taskHashCode +
                     '}';
         }
     }

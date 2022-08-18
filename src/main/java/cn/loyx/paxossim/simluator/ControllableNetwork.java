@@ -6,13 +6,14 @@ import cn.loyx.paxos.protocol.PaxosPacket;
 import cn.loyx.paxossim.simluator.util.ChangeableDelayQueue;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class ControllableNetwork implements Communicator {
 
 
     private final SocketCommunicator realCommunicator;
     private final ChangeableDelayQueue<DelayedPacket> CDQueue = new ChangeableDelayQueue<>();
-    private final HashMap<Long, DelayedPacket> packetsMap = new HashMap<>();
+    private final Map<Long, DelayedPacket> packetsMap = new HashMap<>();
 
     public ControllableNetwork(SocketCommunicator communicator){
         this.realCommunicator = communicator;

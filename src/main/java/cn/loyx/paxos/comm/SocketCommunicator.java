@@ -20,10 +20,8 @@ public class SocketCommunicator implements Communicator {
     }
     private final BlockingQueue<PaxosPacket> receivedPackets;
     private final BlockingQueue<SocketPacket> needSendPackets;
-    private final int port;
     private final ExecutorService executors;
     public SocketCommunicator(int port){
-        this.port = port;
         this.receivedPackets = new LinkedBlockingQueue<>();
         this.needSendPackets = new LinkedBlockingQueue<>();
         this.executors = Executors.newFixedThreadPool(10);
