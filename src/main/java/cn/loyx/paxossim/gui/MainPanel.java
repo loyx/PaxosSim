@@ -18,10 +18,10 @@ public class MainPanel extends JPanel {
         add(new JLabel("bottom"), BorderLayout.SOUTH);
 
         // west
-        add(new SiteInfoPanel(new Dimension(PANEL_WIDTH/5, PANEL_HEIGHT)), BorderLayout.WEST);
+//        add(new SiteInfoPanel(new Dimension(PANEL_WIDTH/5, PANEL_HEIGHT)), BorderLayout.WEST);
 
         // east
-        add(new PacketInfoPanel(new Dimension(PANEL_WIDTH/5, PANEL_HEIGHT)), BorderLayout.EAST);
+//        add(new PacketInfoPanel(new Dimension(PANEL_WIDTH/5, PANEL_HEIGHT)), BorderLayout.EAST);
 
         // center
         add(new DrawPanel(), BorderLayout.CENTER);
