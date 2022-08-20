@@ -1,5 +1,6 @@
 package cn.loyx.paxossim.gui;
 
+import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 
 import javax.swing.*;
@@ -10,7 +11,6 @@ public class PaxosSimFrame extends JFrame {
     PaxosSimFrame(){
         super("PaxosSim");
 
-        FlatLightLaf.setup();
 
         panel = new MainPanel();
 
