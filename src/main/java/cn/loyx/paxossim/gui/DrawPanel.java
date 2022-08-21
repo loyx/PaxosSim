@@ -1,42 +1,73 @@
 package cn.loyx.paxossim.gui;
 
-import cn.loyx.paxossim.gui.component.PacketComponent;
 import cn.loyx.paxossim.gui.component.SiteComponent;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class DrawPanel extends JPanel {
+
+    SiteComponent select;
     DrawPanel(){
         // settings
         setLayout(null);
+
+        DrawPanelMouseListener drawPanelMouseListener = new DrawPanelMouseListener();
+        addMouseListener(drawPanelMouseListener);
 
         // sites
         SiteComponent site1 = new SiteComponent();
         site1.setState(SiteComponent.SiteState.RUN);
         site1.setLocation(100, 100);
-        add(site1);
+        addPaxosComponent(site1);
 
         SiteComponent site2 = new SiteComponent();
         site2.setState(SiteComponent.SiteState.DOWN);
-        site2.setLocation(0,0);
-        add(site2);
+        site2.setLocation(100, 100);
+        addPaxosComponent(site2);
 
-        SiteComponent site3 = new SiteComponent();
-        site3.setState(SiteComponent.SiteState.INITIAL);
-        site3.setLocation(250,250);
-        add(site3);
+    }
 
-        PacketComponent p1 = new PacketComponent(PacketComponent.PacketUIType.PREPARE_PACKET);
-        p1.setLocation(100 ,20);
-        add(p1);
+    private void addPaxosComponent(SiteComponent component) {
 
-        PacketComponent p2 = new PacketComponent(PacketComponent.PacketUIType.PREPARE_OK);
-        p2.setLocation(200 ,20);
-        add(p2);
+        MouseAdapter componentMouseListener = new MouseAdapter() {
+            Point previousPoint = null;
+            @Override
+            public void mousePressed(MouseEvent e) {
+                select = component;
+                previousPoint = e.getPoint();
+                System.out.print("Point: " + e.getPoint());
+                System.out.println(select);
+            }
 
-        PacketComponent p3 = new PacketComponent(PacketComponent.PacketUIType.PREPARE_REJECT);
-        p3.setLocation(300 ,20);
-        add(p3);
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                previousPoint = null;
+            }
+
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                Point currentPoint = e.getPoint();
+                int dx = (int) (currentPoint.getX() - previousPoint.getX());
+                int dy = (int) (currentPoint.getY() - previousPoint.getY());
+                Point location = component.getLocation();
+                location.translate(dx, dy);
+                component.setLocation(location);
+            }
+        };
+        component.addMouseListener(componentMouseListener);
+        component.addMouseMotionListener(componentMouseListener);
+        add(component);
+    }
+
+    private class DrawPanelMouseListener extends MouseAdapter{
+        @Override
+        public void mousePressed(MouseEvent e) {
+            select = null;
+            System.out.println("unselect");
+        }
     }
 
 }

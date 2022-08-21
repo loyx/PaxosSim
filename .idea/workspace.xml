@@ -4,30 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a947b55-fe62-4f56-8e2c-78ed909eceea" name="Changes" comment=":construction: mainFrame structure">
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/component/PacketComponent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/component/SiteComponent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icon/accept_ok.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icon/accept_packet.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icon/accept_reject.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icon/prepare_ok.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icon/prepare_packet.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icon/prepare_reject.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icon/propose_packet.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icon/site_boot.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icon/site_down.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icon/site_initial.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icon/site_run.png" afterDir="false" />
+    <list default="true" id="4a947b55-fe62-4f56-8e2c-78ed909eceea" name="Changes" comment=":construction: add SiteComponent; add PacketComponent">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/Packet.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/DrawPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/DrawPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/MainPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/MainPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/icon/wenjianshanchu.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/icon/wenjianshangchuan.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/icon/wenjiantianjia.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/icon/wenjianxiazai.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/icon/wenjianxuanzhong.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,23 +42,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "create.test.in.the.same.root": "true",
-    "jdk.selected.JAVA_MODULE": "corretto-16",
-    "last_opened_file_path": "E:/7_桌面temp/工作区/云计算（22年春）/大作业/PaxosSim/src/main/resources/icon",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "MavenSettings"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-16&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/7_桌面temp/工作区/云计算（22年春）/大作业/PaxosSim/src/main/resources/icon&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\7_桌面temp\工作区\云计算（22年春）\大作业\PaxosSim\src\main\resources\icon" />
