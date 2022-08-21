@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a947b55-fe62-4f56-8e2c-78ed909eceea" name="Changes" comment=":construction: add SiteComponent; add PacketComponent">
+    <list default="true" id="4a947b55-fe62-4f56-8e2c-78ed909eceea" name="Changes" comment=":sparkles: feat(UI): support site drag">
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/component/LinkComponent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/DrawPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/DrawPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/component/SiteComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/component/SiteComponent.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -405,7 +407,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661001198452</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary=":sparkles: feat(UI): support site drag">
+      <created>1661067194939</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1661067194939</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -443,7 +452,8 @@
     <MESSAGE value=":sparkles: add NodeInfo.timeout" />
     <MESSAGE value=":sparkles: add Simulator" />
     <MESSAGE value=":construction: mainFrame structure" />
-    <option name="LAST_COMMIT_MESSAGE" value=":construction: mainFrame structure" />
+    <MESSAGE value=":sparkles: feat(UI): support site drag" />
+    <option name="LAST_COMMIT_MESSAGE" value=":sparkles: feat(UI): support site drag" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

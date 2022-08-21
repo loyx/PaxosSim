@@ -1,5 +1,6 @@
 package cn.loyx.paxossim.gui;
 
+import cn.loyx.paxossim.gui.component.LinkComponent;
 import cn.loyx.paxossim.gui.component.SiteComponent;
 
 import javax.swing.*;
@@ -25,8 +26,14 @@ public class DrawPanel extends JPanel {
 
         SiteComponent site2 = new SiteComponent();
         site2.setState(SiteComponent.SiteState.DOWN);
-        site2.setLocation(100, 100);
+        site2.setLocation(200, 200);
         addPaxosComponent(site2);
+
+        LinkComponent link1 = new LinkComponent(site1, site2);
+        link1.setBackground(Color.cyan);
+        add(link1);
+        System.out.println(link1.getSize());
+
 
     }
 
@@ -38,8 +45,6 @@ public class DrawPanel extends JPanel {
             public void mousePressed(MouseEvent e) {
                 select = component;
                 previousPoint = e.getPoint();
-                System.out.print("Point: " + e.getPoint());
-                System.out.println(select);
             }
 
             @Override

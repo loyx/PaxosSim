@@ -3,9 +3,8 @@ package cn.loyx.paxossim.gui.component;
 import javax.swing.*;
 import java.awt.*;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
+import java.util.List;
 
 public class SiteComponent extends JComponent {
 
@@ -34,11 +33,16 @@ public class SiteComponent extends JComponent {
 
     Image siteImage;
     SiteState state;
+    List<LinkComponent> links = new LinkedList<>();
 
     // constructors
     public SiteComponent(){
         setState(SiteState.INITIAL);
         setSize(siteImage.getWidth(null), siteImage.getHeight(null));
+    }
+
+    public void registerLink(LinkComponent linkComponent){
+        links.add(linkComponent);
     }
 
     // status
@@ -54,5 +58,11 @@ public class SiteComponent extends JComponent {
         super.paintComponent(g);
         Graphics2D g2D = (Graphics2D) g;
         g2D.drawImage(siteImage, 0, 0, null);
+    }
+
+    @Override
+    public void setLocation(int x, int y) {
+        super.setLocation(x, y);
+        links.forEach(LinkComponent::updateLink);
     }
 }
