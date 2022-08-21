@@ -34,6 +34,11 @@
             <artifactId>flatlaf</artifactId>
             <version>2.4</version>
         </dependency>
+        <dependency>
+            <groupId>org.pushing-pixels</groupId>
+            <artifactId>radiance-animation</artifactId>
+            <version>5.0.0</version>
+        </dependency>
     </dependencies>
 
     <properties>

@@ -1,6 +1,7 @@
 package cn.loyx.paxossim.gui;
 
 import cn.loyx.paxossim.gui.component.LinkComponent;
+import cn.loyx.paxossim.gui.component.PacketComponent;
 import cn.loyx.paxossim.gui.component.SiteComponent;
 
 import javax.swing.*;
@@ -32,7 +33,8 @@ public class DrawPanel extends JPanel {
         LinkComponent link1 = new LinkComponent(site1, site2);
         link1.setBackground(Color.cyan);
         add(link1);
-        System.out.println(link1.getSize());
+
+        link1.addPacket(new PacketComponent(PacketComponent.PacketUIType.ACCEPT_PACKET));
 
 
     }
