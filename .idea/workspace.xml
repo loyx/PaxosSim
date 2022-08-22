@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a947b55-fe62-4f56-8e2c-78ed909eceea" name="Changes" comment=":sparkles: feat(gui): add packet animation">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022_8_14_21_04_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022_8_14_21_04__Changes_.xml" beforeDir="false" />
+    <list default="true" id="4a947b55-fe62-4f56-8e2c-78ed909eceea" name="Changes" comment=":sparkles: feat(gui): support packet animation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/DrawPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/DrawPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/component/LinkComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/component/LinkComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/component/PacketComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/component/PacketComponent.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -270,7 +266,7 @@
       <workItem from="1660907862920" duration="4081000" />
       <workItem from="1661167353212" duration="1096000" />
       <workItem from="1661168869949" duration="14000" />
-      <workItem from="1661168902191" duration="4752000" />
+      <workItem from="1661168902191" duration="7286000" />
     </task>
     <task id="LOCAL-00001" summary=":construction: on working">
       <created>1660048329581</created>
@@ -433,7 +429,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661083637332</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary=":sparkles: feat(gui): support packet animation">
+      <created>1661177398913</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1661177398913</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -474,7 +477,8 @@
     <MESSAGE value=":sparkles: feat(UI): support site drag" />
     <MESSAGE value=":sparkles: feat(UI): add LinkComponent" />
     <MESSAGE value=":sparkles: feat(gui): add packet animation" />
-    <option name="LAST_COMMIT_MESSAGE" value=":sparkles: feat(gui): add packet animation" />
+    <MESSAGE value=":sparkles: feat(gui): support packet animation" />
+    <option name="LAST_COMMIT_MESSAGE" value=":sparkles: feat(gui): support packet animation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

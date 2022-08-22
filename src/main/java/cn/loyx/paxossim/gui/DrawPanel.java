@@ -12,6 +12,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.geom.Point2D;
 
 public class DrawPanel extends JPanel {
 
@@ -27,12 +28,12 @@ public class DrawPanel extends JPanel {
         SiteComponent site1 = new SiteComponent();
         site1.setState(SiteComponent.SiteState.RUN);
         site1.setLocation(100, 100);
-        addPaxosComponent(site1);
+        addSite(site1);
 
         SiteComponent site2 = new SiteComponent();
         site2.setState(SiteComponent.SiteState.DOWN);
         site2.setLocation(200, 200);
-        addPaxosComponent(site2);
+        addSite(site2);
 
         PacketComponent packet = new PacketComponent(PacketComponent.PacketUIType.ACCEPT_OK);
         addPacket(packet, site1, site2);
@@ -45,29 +46,41 @@ public class DrawPanel extends JPanel {
     }
 
     private void addPacket(PacketComponent packet, SiteComponent src, SiteComponent dst) {
+//        MouseAdapter DragListener = new MouseAdapter() {
+//            public float progress = 0;
+//
+//            @Override
+//            public void mouseDragged(MouseEvent e) {
+//                super.mouseDragged(e);
+//            }
+//        };
+        class Progress{
+            public float value = 0;
+        }
+        Progress progress = new Progress();
 
-        SwingComponentTimeline progress = SwingComponentTimeline.componentBuilder(packet)
+        // packet animation setting
+        SwingComponentTimeline timeline = SwingComponentTimeline.componentBuilder(packet)
                 .addPropertyToInterpolate(Timeline.<Float>property("progress")
                         .from(0.0f)
                         .to(1.0f)
                         .accessWith(new TimelinePropertyBuilder.PropertyAccessor<>() {
-
-                            float progress1 = 0;
-
+//                            float progress = 0;
                             @Override
                             public void set(Object o, String s, Float value) {
-                                progress1 = value;
-                                System.out.println("progress: " + progress1);
+                                progress.value = value;
+//                                System.out.println("progress: " + progress.value);
                                 Rectangle sb = src.getBounds();
                                 Rectangle eb = dst.getBounds();
-                                int newX = (int) (sb.getCenterX() + (eb.getCenterX() - sb.getCenterX()) * progress1);
-                                int newY = (int) (sb.getCenterY() + (eb.getCenterY() - sb.getCenterY()) * progress1);
+                                int newX = (int) (sb.getCenterX() + (eb.getCenterX() - sb.getCenterX()) * progress.value);
+                                int newY = (int) (sb.getCenterY() + (eb.getCenterY() - sb.getCenterY()) * progress.value);
                                 packet.setCenterLocation(newX, newY);
                             }
 
                             @Override
                             public Float get(Object o, String s) {
-                                return progress1;
+                                System.out.println("getValue: " + progress.value);
+                                return progress.value;
                             }
                         })
                 )
@@ -85,14 +98,43 @@ public class DrawPanel extends JPanel {
                     }
                 })
                 .build();
-        progress.play();
+
+        // packet mouse event setting
+        Rectangle srcB = src.getBounds();
+        Rectangle dstB = dst.getBounds();
+        double distance = Point.distance(srcB.x, srcB.y, dstB.x, dstB.y);
+        MouseAdapter packetMouseListener = new MouseAdapter() {
+            Point previousPoint;
+            @Override
+            public void mousePressed(MouseEvent e) {
+                // todo select
+                System.out.println("select packet");
+                timeline.suspend();
+                previousPoint = e.getPoint();
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                timeline.resume();
+            }
+
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                Point currentPoint = e.getPoint();
+                progress.value = 0;
+            }
+        };
+
+        timeline.play();
 //        progress.playLoop(Timeline.RepeatBehavior.REVERSE);
+        packet.addMouseListener(packetMouseListener);
+        packet.addMouseMotionListener(packetMouseListener);
         add(packet);
     }
 
-    private void addPaxosComponent(SiteComponent component) {
+    private void addSite(SiteComponent component) {
 
-        MouseAdapter componentMouseListener = new MouseAdapter() {
+        MouseAdapter siteMouseListener = new MouseAdapter() {
             Point previousPoint = null;
             @Override
             public void mousePressed(MouseEvent e) {
@@ -115,8 +157,8 @@ public class DrawPanel extends JPanel {
                 component.setLocation(location);
             }
         };
-        component.addMouseListener(componentMouseListener);
-        component.addMouseMotionListener(componentMouseListener);
+        component.addMouseListener(siteMouseListener);
+        component.addMouseMotionListener(siteMouseListener);
         add(component);
     }
 
