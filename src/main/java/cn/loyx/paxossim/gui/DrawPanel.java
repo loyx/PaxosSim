@@ -3,6 +3,10 @@ package cn.loyx.paxossim.gui;
 import cn.loyx.paxossim.gui.component.LinkComponent;
 import cn.loyx.paxossim.gui.component.PacketComponent;
 import cn.loyx.paxossim.gui.component.SiteComponent;
+import org.pushingpixels.radiance.animation.api.Timeline;
+import org.pushingpixels.radiance.animation.api.TimelinePropertyBuilder;
+import org.pushingpixels.radiance.animation.api.callback.TimelineCallbackAdapter;
+import org.pushingpixels.radiance.animation.api.swing.SwingComponentTimeline;
 
 import javax.swing.*;
 import java.awt.*;
@@ -30,13 +34,60 @@ public class DrawPanel extends JPanel {
         site2.setLocation(200, 200);
         addPaxosComponent(site2);
 
+        PacketComponent packet = new PacketComponent(PacketComponent.PacketUIType.ACCEPT_OK);
+        addPacket(packet, site1, site2);
+
         LinkComponent link1 = new LinkComponent(site1, site2);
-        link1.setBackground(Color.cyan);
         add(link1);
 
-        link1.addPacket(new PacketComponent(PacketComponent.PacketUIType.ACCEPT_PACKET));
 
 
+    }
+
+    private void addPacket(PacketComponent packet, SiteComponent src, SiteComponent dst) {
+
+        SwingComponentTimeline progress = SwingComponentTimeline.componentBuilder(packet)
+                .addPropertyToInterpolate(Timeline.<Float>property("progress")
+                        .from(0.0f)
+                        .to(1.0f)
+                        .accessWith(new TimelinePropertyBuilder.PropertyAccessor<>() {
+
+                            float progress1 = 0;
+
+                            @Override
+                            public void set(Object o, String s, Float value) {
+                                progress1 = value;
+                                System.out.println("progress: " + progress1);
+                                Rectangle sb = src.getBounds();
+                                Rectangle eb = dst.getBounds();
+                                int newX = (int) (sb.getCenterX() + (eb.getCenterX() - sb.getCenterX()) * progress1);
+                                int newY = (int) (sb.getCenterY() + (eb.getCenterY() - sb.getCenterY()) * progress1);
+                                packet.setCenterLocation(newX, newY);
+                            }
+
+                            @Override
+                            public Float get(Object o, String s) {
+                                return progress1;
+                            }
+                        })
+                )
+                .setDuration(5_000)
+                .addCallback(new TimelineCallbackAdapter(){
+                    @Override
+                    public void onTimelineStateChanged(Timeline.TimelineState oldState,
+                                                       Timeline.TimelineState newState,
+                                                       float durationFraction,
+                                                       float timelinePosition) {
+                        if (newState == Timeline.TimelineState.DONE){
+                            remove(packet);
+                            repaint();
+                        }
+                    }
+                })
+                .build();
+        progress.play();
+//        progress.playLoop(Timeline.RepeatBehavior.REVERSE);
+        add(packet);
     }
 
     private void addPaxosComponent(SiteComponent component) {

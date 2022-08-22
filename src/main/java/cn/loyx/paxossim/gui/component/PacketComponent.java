@@ -48,6 +48,10 @@ public class PacketComponent extends JComponent {
         setSize(packetIcon.getWidth(null), packetIcon.getHeight(null));
     }
 
+    public void setCenterLocation(int x, int y){
+        setLocation(x - getWidth()/2, y - getHeight()/2);
+    }
+
     @Override
     public void paint(Graphics g) {
         super.paint(g);
