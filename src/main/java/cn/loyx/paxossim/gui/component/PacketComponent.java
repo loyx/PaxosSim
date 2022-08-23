@@ -99,6 +99,14 @@ public class PacketComponent extends JComponent {
         setCenterLocation(newX, newY);
     }
 
+    public SiteComponent getSrc() {
+        return src;
+    }
+
+    public SiteComponent getDst() {
+        return dst;
+    }
+
 
     @Override
     public void paint(Graphics g) {

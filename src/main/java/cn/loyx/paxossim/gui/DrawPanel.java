@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Map;
 
 public class DrawPanel extends JPanel {
 
@@ -46,12 +47,14 @@ public class DrawPanel extends JPanel {
         MouseAdapter packetMouseListener = new MouseAdapter() {
             Point previousPoint;
             SwingComponentTimeline currentTimeline = timeline;
+            JComponent comp;
             @Override
             public void mousePressed(MouseEvent e) {
                 // todo select
                 System.out.println("select packet");
                 currentTimeline.cancel();
                 previousPoint = e.getPoint();
+                comp = (JComponent) e.getSource();
             }
 
             @Override
@@ -63,7 +66,17 @@ public class DrawPanel extends JPanel {
             @Override
             public void mouseDragged(MouseEvent e) {
                 Point currentPoint = e.getPoint();
-
+                SiteComponent src = packet.getSrc();
+                SiteComponent dst = packet.getDst();
+                double x1 = comp.getX() + currentPoint.x - src.getBounds().getCenterX();
+                double y1 = comp.getY() + currentPoint.y - src.getBounds().getCenterY();
+                double x2 = dst.getBounds().getCenterX() - src.getBounds().getCenterX();
+                double y2 = dst.getBounds().getCenterY() - src.getBounds().getCenterY();
+                double length = Math.sqrt(x2 * x2 + y2 * y2);
+                double progress = (x1*x2+y1*y2)/ (length*length);
+                if (progress < 0) progress = 0;
+                if (progress > 1) progress = 1;
+                packet.setProgress((float) progress);
             }
         };
 

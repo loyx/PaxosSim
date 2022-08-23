@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a947b55-fe62-4f56-8e2c-78ed909eceea" name="Changes" comment=":sparkles: feat(gui): support packet animation">
+    <list default="true" id="4a947b55-fe62-4f56-8e2c-78ed909eceea" name="Changes" comment=":recycle: refactor packet animation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/DrawPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/DrawPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/component/PacketComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/component/PacketComponent.java" afterDir="false" />
