@@ -3,16 +3,12 @@ package cn.loyx.paxossim.gui;
 import cn.loyx.paxossim.gui.component.LinkComponent;
 import cn.loyx.paxossim.gui.component.PacketComponent;
 import cn.loyx.paxossim.gui.component.SiteComponent;
-import org.pushingpixels.radiance.animation.api.Timeline;
-import org.pushingpixels.radiance.animation.api.TimelinePropertyBuilder;
-import org.pushingpixels.radiance.animation.api.callback.TimelineCallbackAdapter;
 import org.pushingpixels.radiance.animation.api.swing.SwingComponentTimeline;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.geom.Point2D;
 
 public class DrawPanel extends JPanel {
 
@@ -35,8 +31,8 @@ public class DrawPanel extends JPanel {
         site2.setLocation(200, 200);
         addSite(site2);
 
-        PacketComponent packet = new PacketComponent(PacketComponent.PacketUIType.ACCEPT_OK);
-        addPacket(packet, site1, site2);
+        PacketComponent packet = new PacketComponent(PacketComponent.PacketUIType.ACCEPT_OK, site1, site2, 10_000, this);
+        addPacket(packet);
 
         LinkComponent link1 = new LinkComponent(site1, site2);
         add(link1);
@@ -45,91 +41,36 @@ public class DrawPanel extends JPanel {
 
     }
 
-    private void addPacket(PacketComponent packet, SiteComponent src, SiteComponent dst) {
-//        MouseAdapter DragListener = new MouseAdapter() {
-//            public float progress = 0;
-//
-//            @Override
-//            public void mouseDragged(MouseEvent e) {
-//                super.mouseDragged(e);
-//            }
-//        };
-        class Progress{
-            public float value = 0;
-        }
-        Progress progress = new Progress();
-
-        // packet animation setting
-        SwingComponentTimeline timeline = SwingComponentTimeline.componentBuilder(packet)
-                .addPropertyToInterpolate(Timeline.<Float>property("progress")
-                        .from(0.0f)
-                        .to(1.0f)
-                        .accessWith(new TimelinePropertyBuilder.PropertyAccessor<>() {
-//                            float progress = 0;
-                            @Override
-                            public void set(Object o, String s, Float value) {
-                                progress.value = value;
-//                                System.out.println("progress: " + progress.value);
-                                Rectangle sb = src.getBounds();
-                                Rectangle eb = dst.getBounds();
-                                int newX = (int) (sb.getCenterX() + (eb.getCenterX() - sb.getCenterX()) * progress.value);
-                                int newY = (int) (sb.getCenterY() + (eb.getCenterY() - sb.getCenterY()) * progress.value);
-                                packet.setCenterLocation(newX, newY);
-                            }
-
-                            @Override
-                            public Float get(Object o, String s) {
-                                System.out.println("getValue: " + progress.value);
-                                return progress.value;
-                            }
-                        })
-                )
-                .setDuration(5_000)
-                .addCallback(new TimelineCallbackAdapter(){
-                    @Override
-                    public void onTimelineStateChanged(Timeline.TimelineState oldState,
-                                                       Timeline.TimelineState newState,
-                                                       float durationFraction,
-                                                       float timelinePosition) {
-                        if (newState == Timeline.TimelineState.DONE){
-                            remove(packet);
-                            repaint();
-                        }
-                    }
-                })
-                .build();
-
-        // packet mouse event setting
-        Rectangle srcB = src.getBounds();
-        Rectangle dstB = dst.getBounds();
-        double distance = Point.distance(srcB.x, srcB.y, dstB.x, dstB.y);
+    private void addPacket(PacketComponent packet) {
+        SwingComponentTimeline timeline = packet.createNewPacketTimeline();
         MouseAdapter packetMouseListener = new MouseAdapter() {
             Point previousPoint;
+            SwingComponentTimeline currentTimeline = timeline;
             @Override
             public void mousePressed(MouseEvent e) {
                 // todo select
                 System.out.println("select packet");
-                timeline.suspend();
+                currentTimeline.cancel();
                 previousPoint = e.getPoint();
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
-                timeline.resume();
+                currentTimeline = packet.createNewPacketTimeline();
+                currentTimeline.play();
             }
 
             @Override
             public void mouseDragged(MouseEvent e) {
                 Point currentPoint = e.getPoint();
-                progress.value = 0;
+
             }
         };
 
-        timeline.play();
-//        progress.playLoop(Timeline.RepeatBehavior.REVERSE);
         packet.addMouseListener(packetMouseListener);
         packet.addMouseMotionListener(packetMouseListener);
         add(packet);
+        SwingUtilities.invokeLater(timeline::play);
     }
 
     private void addSite(SiteComponent component) {

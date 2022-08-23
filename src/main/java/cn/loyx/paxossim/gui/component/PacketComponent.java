@@ -1,6 +1,10 @@
 package cn.loyx.paxossim.gui.component;
 
 
+import org.pushingpixels.radiance.animation.api.Timeline;
+import org.pushingpixels.radiance.animation.api.callback.TimelineCallbackAdapter;
+import org.pushingpixels.radiance.animation.api.swing.SwingComponentTimeline;
+
 import javax.swing.*;
 import java.awt.*;
 import java.net.URL;
@@ -41,16 +45,60 @@ public class PacketComponent extends JComponent {
 
     Image packetIcon;
     PacketUIType type;
+    final SiteComponent src;
+    final SiteComponent dst;
+    final long delayTime;
+    final JComponent fatherComponent;
+    private float progress;
 
-    public PacketComponent(PacketUIType type){
+
+    public PacketComponent(PacketUIType type, SiteComponent src, SiteComponent dst, long delayTime, JComponent fatherComponent){
         this.type = type;
         packetIcon = imageResources.get(type);
+        this.src = src;
+        this.dst = dst;
+        this.delayTime = delayTime;
+        this.fatherComponent = fatherComponent;
         setSize(packetIcon.getWidth(null), packetIcon.getHeight(null));
+        setCenterLocation((int) src.getBounds().getCenterX(), (int) src.getBounds().getCenterY());
+    }
+
+    public SwingComponentTimeline createNewPacketTimeline(){
+        PacketComponent thisInstance = this;
+        return SwingComponentTimeline.componentBuilder(this)
+                .addPropertyToInterpolate(Timeline.<Float>property("progress")
+                        .fromCurrent()
+                        .to(1.0f)
+                )
+                .setDuration((long) (delayTime * (1 - progress)))
+                .addCallback(new TimelineCallbackAdapter() {
+                    @Override
+                    public void onTimelineStateChanged(Timeline.TimelineState oldState, Timeline.TimelineState newState, float durationFraction, float timelinePosition) {
+                        if (newState == Timeline.TimelineState.DONE){
+                            fatherComponent.remove(thisInstance);
+                            fatherComponent.repaint();
+                        }
+                    }
+                })
+                .build();
     }
 
     public void setCenterLocation(int x, int y){
         setLocation(x - getWidth()/2, y - getHeight()/2);
     }
+    public float getProgress() {
+        return progress;
+    }
+
+    public void setProgress(float progress) {
+        this.progress = progress;
+        Rectangle sb = src.getBounds();
+        Rectangle eb = dst.getBounds();
+        int newX = (int) (sb.getCenterX() + (eb.getCenterX() - sb.getCenterX()) * progress);
+        int newY = (int) (sb.getCenterY() + (eb.getCenterY() - sb.getCenterY()) * progress);
+        setCenterLocation(newX, newY);
+    }
+
 
     @Override
     public void paint(Graphics g) {
