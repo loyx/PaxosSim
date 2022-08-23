@@ -47,4 +47,7 @@ public class Simulator {
     public Paxos getPaxos(int id){
         return paxosSites.get(id);
     }
+    public ControllableCommunicator getComm(int id) {
+        return comm.get(id);
+    }
 }

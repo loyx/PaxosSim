@@ -1,9 +1,16 @@
 package cn.loyx.paxossim.gui;
 
+import cn.loyx.paxos.Paxos;
+import cn.loyx.paxos.PaxosValue;
 import cn.loyx.paxos.conf.NodeInfo;
+import cn.loyx.paxos.protocol.PacketType;
+import cn.loyx.paxos.protocol.PaxosPacket;
 import cn.loyx.paxossim.gui.component.LinkComponent;
 import cn.loyx.paxossim.gui.component.PacketComponent;
+import cn.loyx.paxossim.gui.component.PacketUIType;
 import cn.loyx.paxossim.gui.component.SiteComponent;
+import cn.loyx.paxossim.sim.ControllableCommunicator;
+import cn.loyx.paxossim.sim.PacketListener;
 import cn.loyx.paxossim.sim.SimConfig;
 import cn.loyx.paxossim.sim.Simulator;
 import org.pushingpixels.radiance.animation.api.swing.SwingComponentTimeline;
@@ -12,9 +19,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
+import java.util.Timer;
 
 public class DrawPanel extends JPanel {
 
@@ -30,6 +37,7 @@ public class DrawPanel extends JPanel {
         Simulator simulator = new Simulator("src/test/resources/simConfig.json");
         SimConfig config = simulator.getConfig();
         System.out.println(config);
+        JComponent drawInstance = this;
         for (NodeInfo nodeInfo : config.getNodeList()) {
             SiteComponent site = new SiteComponent();
             site.setState(SiteComponent.SiteState.RUN);
@@ -38,27 +46,36 @@ public class DrawPanel extends JPanel {
                 add(link);
             }
             sites.add(site);
-            addSite(site);
+            addSite(site); // add UI component
+            int id = nodeInfo.getId();
+            ControllableCommunicator comm = simulator.getComm(id);
+            comm.addPacketListener(new PacketListener() {
+                final SiteComponent src = site;
+                @Override
+                public void onSendPacket(String ip, int port, PaxosPacket paxosPacket) {
+//                    System.out.println("onSendPacket");
+                    PacketUIType packetUIType = PacketUIType.fromPacket(paxosPacket);
+                    SiteComponent dst = sites.get(config.getIdFromNetAddr(ip, port));
+                    PacketComponent packetComponent = new PacketComponent(packetUIType, src, dst, 10_000, drawInstance);
+                    addPacket(packetComponent);
+                }
+            });
         }
 
-//        // sites
-//        SiteComponent site1 = new SiteComponent();
-//        site1.setState(SiteComponent.SiteState.RUN);
-//        site1.setLocation(100, 100);
-//        addSite(site1);
-//
-//        SiteComponent site2 = new SiteComponent();
-//        site2.setState(SiteComponent.SiteState.DOWN);
-//        site2.setLocation(200, 200);
-//        addSite(site2);
-//
-//        PacketComponent packet = new PacketComponent(PacketComponent.PacketUIType.ACCEPT_OK, site1, site2, 10_000, this);
-//        addPacket(packet);
-//
-//        LinkComponent link1 = new LinkComponent(site1, site2);
-//        add(link1);
+        // start simulator
+        simulator.start();
 
-
+        JButton propose = new JButton("propose");
+        propose.setLocation(10, 500);
+        propose.setSize(100, 60);
+        propose.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Paxos paxos = simulator.getPaxos(0);
+                paxos.propose(new PaxosValue("site1"), null);
+            }
+        });
+        add(propose);
 
     }
 

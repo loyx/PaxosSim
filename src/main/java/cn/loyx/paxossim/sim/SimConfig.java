@@ -19,4 +19,12 @@ public class SimConfig {
             throw new RuntimeException(e);
         }
     }
+    public int getIdFromNetAddr(String ip, int port){
+        for (NodeInfo nodeInfo : nodeList) {
+            if (nodeInfo.getIp().equals(ip) && nodeInfo.getPort() == port){
+                return nodeInfo.getId();
+            }
+        }
+        throw new RuntimeException("unknown address: " + ip + ":" + port);
+    }
 }

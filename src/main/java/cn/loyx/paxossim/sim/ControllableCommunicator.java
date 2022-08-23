@@ -7,6 +7,8 @@ import cn.loyx.paxossim.sim.util.ChangeableDelayQueue;
 import lombok.extern.log4j.Log4j;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 @Log4j
@@ -16,6 +18,7 @@ public class ControllableCommunicator implements Communicator {
     private final SocketCommunicator realCommunicator;
     private final ChangeableDelayQueue<DelayedPacket> CDQueue = new ChangeableDelayQueue<>();
     private final Map<Long, DelayedPacket> packetsMap = new HashMap<>();
+    private final List<PacketListener> listeners = new LinkedList<>();
 
     public ControllableCommunicator(SocketCommunicator communicator){
         this.realCommunicator = communicator;
@@ -34,18 +37,26 @@ public class ControllableCommunicator implements Communicator {
         }, "real-send-thread").start();
     }
 
+    public void addPacketListener(PacketListener listener){
+        listeners.add(listener);
+    }
+
+    public void removePacketListener(PacketListener listener){
+        listeners.remove(listener);
+    }
+
     @Override
     public void send(String ip, int port, PaxosPacket paxosPacket) {
-//        log.info("CComm get a packet: " + paxosPacket);
-        DelayedPacket packet = new DelayedPacket(1, ip, port, paxosPacket);
+        DelayedPacket packet = new DelayedPacket(10, ip, port, paxosPacket);
         CDQueue.put(packet);
         packetsMap.put(packet.getId(), packet);
+        listeners.forEach(listener -> listener.onSendPacket(ip, port, paxosPacket));
     }
 
     @Override
     public PaxosPacket receive() {
         PaxosPacket receive = realCommunicator.receive();
-//        log.info("CComm receive a packet: " + receive);
+        listeners.forEach(listener -> listener.onReceivePacket(receive));
         return receive;
     }
 

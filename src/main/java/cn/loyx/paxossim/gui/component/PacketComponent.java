@@ -1,6 +1,8 @@
 package cn.loyx.paxossim.gui.component;
 
-
+import cn.loyx.paxos.protocol.PaxosPacket;
+import cn.loyx.paxos.protocol.load.AcceptResponseLoad;
+import cn.loyx.paxos.protocol.load.PrepareResponseLoad;
 import org.pushingpixels.radiance.animation.api.Timeline;
 import org.pushingpixels.radiance.animation.api.callback.TimelineCallbackAdapter;
 import org.pushingpixels.radiance.animation.api.swing.SwingComponentTimeline;
@@ -14,15 +16,6 @@ import java.util.Objects;
 
 public class PacketComponent extends JComponent {
 
-    public static enum PacketUIType {
-        ACCEPT_OK,
-        ACCEPT_PACKET,
-        ACCEPT_REJECT,
-        PREPARE_OK,
-        PREPARE_PACKET,
-        PREPARE_REJECT,
-        PROPOSE_PACKET,
-    }
     static Map<PacketUIType, Image> imageResources;
 
     static {
