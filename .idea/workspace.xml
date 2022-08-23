@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a947b55-fe62-4f56-8e2c-78ed909eceea" name="Changes" comment=":recycle: refactor packet animation">
+    <list default="true" id="4a947b55-fe62-4f56-8e2c-78ed909eceea" name="Changes" comment=":sparkles: feat(UI): support Packet drag">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/DrawPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/DrawPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/component/PacketComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/component/PacketComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/sim/Simulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/sim/Simulator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,8 +19,8 @@
       <list>
         <option value="Enum" />
         <option value="Interface" />
-        <option value="JUnit5 Test Class" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -43,25 +43,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-16&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/7_桌面temp/工作区/云计算（22年春）/大作业/PaxosSim/src/main/resources/icon&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "create.test.in.the.same.root": "true",
+    "jdk.selected.JAVA_MODULE": "corretto-16",
+    "last_opened_file_path": "D:/0_workspace/云计算/PaxosSim/src/main/resources",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\0_workspace\云计算\PaxosSim\src\main\resources" />
       <recent name="E:\7_桌面temp\工作区\云计算（22年春）\大作业\PaxosSim\src\main\resources\icon" />
       <recent name="D:\0_workspace\云计算\PaxosSim\src\main\resources\icon" />
       <recent name="E:\7_桌面temp\工作区\云计算（22年春）\大作业\PaxosSim\src\test\resources" />
@@ -76,11 +77,11 @@
       <recent name="cn.loyx.paxos.impl" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="cn.loyx.paxossim.gui" />
       <recent name="cn.loyx.paxossim.sim" />
       <recent name="cn.loyx.paxossim.simluator.util" />
       <recent name="cn.loyx.paxos.comm.protocol" />
       <recent name="cn.loyx.paxos.impl" />
-      <recent name="cn.loyx.paxos.conf" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="cn.loyx.paxossim.simluator" />
@@ -101,12 +102,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SimulatorTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="cn.loyx.paxossim.sim.SimulatorTest" />
+    <configuration name="MainTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="cn.loyx.paxossim.gui.MainTest" />
       <module name="PaxosSim" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="cn.loyx.paxossim.sim.*" />
+          <option name="PATTERN" value="cn.loyx.paxossim.gui.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -221,8 +222,8 @@
       <item itemvalue="Application.site1" />
       <item itemvalue="Application.site2" />
       <item itemvalue="Application.site3" />
+      <item itemvalue="Application.MainTest" />
       <item itemvalue="Application.Main" />
-      <item itemvalue="Application.SimulatorTest" />
       <item itemvalue="Compound.siteTest" />
       <item itemvalue="JUnit.ALL-Paoxs" />
       <item itemvalue="JUnit.ChangeableDelayQueueTest.testCancel" />
@@ -232,10 +233,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.MainTest" />
         <item itemvalue="JUnit.SimulatorTest.start" />
         <item itemvalue="JUnit.ChangeableDelayQueueTest.testDelayQueue" />
         <item itemvalue="JUnit.ChangeableDelayQueueTest.testCancel" />
-        <item itemvalue="Application.SimulatorTest" />
       </list>
     </recent_temporary>
   </component>
@@ -437,7 +438,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661177398913</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary=":sparkles: feat(UI): support Packet drag">
+      <created>1661254333301</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1661254333301</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -479,7 +487,8 @@
     <MESSAGE value=":sparkles: feat(UI): add LinkComponent" />
     <MESSAGE value=":sparkles: feat(gui): add packet animation" />
     <MESSAGE value=":sparkles: feat(gui): support packet animation" />
-    <option name="LAST_COMMIT_MESSAGE" value=":sparkles: feat(gui): support packet animation" />
+    <MESSAGE value=":sparkles: feat(UI): support Packet drag" />
+    <option name="LAST_COMMIT_MESSAGE" value=":sparkles: feat(UI): support Packet drag" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

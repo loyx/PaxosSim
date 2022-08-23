@@ -14,8 +14,11 @@ public class Simulator {
     private final Map<Integer, Paxos> paxosSites = new HashMap<>();
     private final Map<Integer, ControllableCommunicator> comm = new HashMap<>();
 
+    private final SimConfig config;
+
     public Simulator(SimConfig config){
         List<NodeInfo> nodeList = config.getNodeList();
+        this.config = config;
         for (int id = 0, nodeListSize = nodeList.size(); id < nodeListSize; id++) {
             NodeInfo nodeInfo = nodeList.get(id);
             Configuration nodeConfig = new Configuration(nodeList, id, nodeInfo.getTimeout(), "");
@@ -32,6 +35,9 @@ public class Simulator {
         this(SimConfig.fromFile(configFile));
     }
 
+    public SimConfig getConfig() {
+        return config;
+    }
     public void start(){
         for (Paxos paxos : paxosSites.values()) {
             paxos.run();
