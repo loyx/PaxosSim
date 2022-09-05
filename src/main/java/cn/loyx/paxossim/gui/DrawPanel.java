@@ -105,6 +105,9 @@ public class DrawPanel extends JPanel {
                 Point currentPoint = e.getPoint();
                 SiteComponent src = packet.getSrc();
                 SiteComponent dst = packet.getDst();
+                if (src == dst){
+                    return;
+                }
                 double x1 = comp.getX() + currentPoint.x - src.getBounds().getCenterX();
                 double y1 = comp.getY() + currentPoint.y - src.getBounds().getCenterY();
                 double x2 = dst.getBounds().getCenterX() - src.getBounds().getCenterX();

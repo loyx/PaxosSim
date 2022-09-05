@@ -53,7 +53,12 @@ public class PacketComponent extends JComponent {
         this.delayTime = delayTime;
         this.fatherComponent = fatherComponent;
         setSize(packetIcon.getWidth(null), packetIcon.getHeight(null));
-        setCenterLocation((int) src.getBounds().getCenterX(), (int) src.getBounds().getCenterY());
+        if (src == dst){
+            setCenterLocation((int) (src.getBounds().getCenterX() + 0.5*src.getWidth() + .5*getWidth()),
+                    (int) src.getBounds().getCenterY());
+        } else {
+            setCenterLocation((int) src.getBounds().getCenterX(), (int) src.getBounds().getCenterY());
+        }
     }
 
     public SwingComponentTimeline createNewPacketTimeline(){
@@ -78,6 +83,7 @@ public class PacketComponent extends JComponent {
 
     public void setCenterLocation(int x, int y){
         setLocation(x - getWidth()/2, y - getHeight()/2);
+        repaint();
     }
     public float getProgress() {
         return progress;
@@ -85,6 +91,11 @@ public class PacketComponent extends JComponent {
 
     public void setProgress(float progress) {
         this.progress = progress;
+        if (src == dst){
+            setCenterLocation((int) (src.getBounds().getCenterX() + 0.5*src.getWidth() + .5*getWidth()),
+                    (int) src.getBounds().getCenterY());
+            return;
+        }
         Rectangle sb = src.getBounds();
         Rectangle eb = dst.getBounds();
         int newX = (int) (sb.getCenterX() + (eb.getCenterX() - sb.getCenterX()) * progress);
