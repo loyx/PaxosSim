@@ -4,10 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a947b55-fe62-4f56-8e2c-78ed909eceea" name="Changes" comment=":sparkles: feat(UI): optimize LinkComponent ui">
+    <list default="true" id="4a947b55-fe62-4f56-8e2c-78ed909eceea" name="Changes" comment=":sparkles: feat(UI): optimize PacketComponent position">
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/comm/EventListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/comm/SimBus.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/DrawPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/DrawPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/component/PacketComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/component/PacketComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/DrawPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/panel/DrawPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/MainPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/panel/MainPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/PacketInfoPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/panel/PacketInfoPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/PaxosSimFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/PaxosSimFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/SiteInfoPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/panel/SiteInfoPanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,8 +24,8 @@
       <list>
         <option value="Enum" />
         <option value="JUnit5 Test Class" />
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -94,7 +99,7 @@
       <module name="PaxosSim" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="cn.loyx.paxossim.gui.*" />
+          <option name="PATTERN" value="cn.loyx.paxossim.gui.panel.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -219,6 +224,9 @@
       <workItem from="1661262886921" duration="189000" />
       <workItem from="1662176365256" duration="6932000" />
       <workItem from="1662364328685" duration="761000" />
+      <workItem from="1662534780098" duration="5481000" />
+      <workItem from="1662604672051" duration="1276000" />
+      <workItem from="1662631444408" duration="2282000" />
     </task>
     <task id="LOCAL-00001" summary=":construction: on working">
       <created>1660048329581</created>

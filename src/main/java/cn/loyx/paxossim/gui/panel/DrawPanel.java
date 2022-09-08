@@ -1,10 +1,11 @@
-package cn.loyx.paxossim.gui;
+package cn.loyx.paxossim.gui.panel;
 
 import cn.loyx.paxos.Paxos;
 import cn.loyx.paxos.PaxosValue;
 import cn.loyx.paxos.conf.NodeInfo;
 import cn.loyx.paxos.protocol.PacketType;
 import cn.loyx.paxos.protocol.PaxosPacket;
+import cn.loyx.paxossim.gui.comm.SimBus;
 import cn.loyx.paxossim.gui.component.LinkComponent;
 import cn.loyx.paxossim.gui.component.PacketComponent;
 import cn.loyx.paxossim.gui.component.PacketUIType;
@@ -27,14 +28,14 @@ public class DrawPanel extends JPanel {
 
     SiteComponent select;
     List<SiteComponent> sites = new ArrayList<>();
-    DrawPanel(){
+    SimBus bus = SimBus.getInstance();
+    DrawPanel(Simulator simulator){
         // DrawPanel settings
         setLayout(null);
         DrawPanelMouseListener drawPanelMouseListener = new DrawPanelMouseListener();
         addMouseListener(drawPanelMouseListener);
 
         // simulator
-        Simulator simulator = new Simulator("src/test/resources/simConfig.json");
         SimConfig config = simulator.getConfig();
         System.out.println(config);
         JComponent drawInstance = this;
@@ -89,6 +90,7 @@ public class DrawPanel extends JPanel {
             public void mousePressed(MouseEvent e) {
                 // todo select
                 System.out.println("select packet");
+                bus.selectPacket(packet);
                 currentTimeline.cancel();
                 previousPoint = e.getPoint();
                 comp = (JComponent) e.getSource();
@@ -133,6 +135,7 @@ public class DrawPanel extends JPanel {
             @Override
             public void mousePressed(MouseEvent e) {
                 select = component;
+                bus.selectSite(component);
                 previousPoint = e.getPoint();
             }
 

@@ -1,7 +1,6 @@
 package cn.loyx.paxossim.gui;
 
-import com.formdev.flatlaf.FlatDarkLaf;
-import com.formdev.flatlaf.FlatLightLaf;
+import cn.loyx.paxossim.gui.panel.MainPanel;
 
 import javax.swing.*;
 
