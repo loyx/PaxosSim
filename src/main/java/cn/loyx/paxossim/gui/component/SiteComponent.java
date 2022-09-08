@@ -32,7 +32,7 @@ public class SiteComponent extends JComponent {
     }
 
     Image siteImage;
-    SiteState state;
+    private SiteState state;
     List<LinkComponent> links = new LinkedList<>();
 
     // constructors
@@ -49,6 +49,10 @@ public class SiteComponent extends JComponent {
     public void setState(SiteState state){
         this.state = state;
         siteImage = imageResources.get(this.state);
+    }
+
+    public SiteState getState() {
+        return state;
     }
 
 

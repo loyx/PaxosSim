@@ -3,7 +3,6 @@ package cn.loyx.paxossim.gui.panel;
 import cn.loyx.paxos.Paxos;
 import cn.loyx.paxos.PaxosValue;
 import cn.loyx.paxos.conf.NodeInfo;
-import cn.loyx.paxos.protocol.PacketType;
 import cn.loyx.paxos.protocol.PaxosPacket;
 import cn.loyx.paxossim.gui.comm.SimBus;
 import cn.loyx.paxossim.gui.component.LinkComponent;
@@ -20,9 +19,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.*;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
 
 public class DrawPanel extends JPanel {
 
@@ -49,15 +47,16 @@ public class DrawPanel extends JPanel {
             sites.add(site);
             addSite(site); // add UI component
             int id = nodeInfo.getId();
+            site.setName("Paxos Site " + id);
             ControllableCommunicator comm = simulator.getComm(id);
             comm.addPacketListener(new PacketListener() {
                 final SiteComponent src = site;
                 @Override
                 public void onSendPacket(String ip, int port, PaxosPacket paxosPacket) {
-//                    System.out.println("onSendPacket");
                     PacketUIType packetUIType = PacketUIType.fromPacket(paxosPacket);
                     SiteComponent dst = sites.get(config.getIdFromNetAddr(ip, port));
                     PacketComponent packetComponent = new PacketComponent(packetUIType, src, dst, 10_000, drawInstance);
+                    packetComponent.setName(String.format("%s -> %s: %s", src.getName(), dst.getName(), paxosPacket.getType()));
                     addPacket(packetComponent);
                 }
             });

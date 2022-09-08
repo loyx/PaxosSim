@@ -10,20 +10,25 @@ import java.awt.*;
 
 public class SiteInfoPanel extends JPanel {
 
+    private final JLabel dynamicInfo;
     Simulator simulator;
     SimBus bus = SimBus.getInstance();
 
     SiteInfoPanel(Dimension dimension){
         setPreferredSize(dimension);
-        setLayout(new FlowLayout());
-        setBackground(Color.green);
-        add(new JLabel("dynamic info"));
-        add(new JLabel("brief info"));
+//        setLayout(new FlowLayout());
+        dynamicInfo = new JLabel("dynamic info");
+        dynamicInfo.setSize(getWidth(), 10);
+        add(dynamicInfo);
+//        add(new JLabel("brief info"));
 
         bus.addEventListener(new EventListener() {
             @Override
             public void siteSelected(SiteComponent siteComponent) {
                 System.out.println("SiteInfoPanel get site select event.");
+                String name = siteComponent.getName();
+                SiteComponent.SiteState state = siteComponent.getState();
+                dynamicInfo.setText(String.format("%s - %s", name, state));
             }
         });
     }

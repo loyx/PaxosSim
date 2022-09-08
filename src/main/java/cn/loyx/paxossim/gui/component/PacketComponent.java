@@ -37,6 +37,7 @@ public class PacketComponent extends JComponent {
     }
 
     Image packetIcon;
+
     PacketUIType type;
     final SiteComponent src;
     final SiteComponent dst;
@@ -109,6 +110,10 @@ public class PacketComponent extends JComponent {
 
     public SiteComponent getDst() {
         return dst;
+    }
+
+    public PacketUIType getType() {
+        return type;
     }
 
 

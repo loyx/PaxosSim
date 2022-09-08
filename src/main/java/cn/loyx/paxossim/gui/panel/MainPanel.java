@@ -28,7 +28,7 @@ public class MainPanel extends JPanel {
         add(siteInfoPanel, BorderLayout.WEST);
 
         // east
-//        add(new PacketInfoPanel(new Dimension(PANEL_WIDTH/5, PANEL_HEIGHT)), BorderLayout.EAST);
+        add(new PacketInfoPanel(new Dimension(PANEL_WIDTH/5, PANEL_HEIGHT)), BorderLayout.EAST);
 
         // center
         add(new DrawPanel(simulator), BorderLayout.CENTER);
