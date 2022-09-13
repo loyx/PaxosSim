@@ -4,13 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a947b55-fe62-4f56-8e2c-78ed909eceea" name="Changes" comment=":sparkles: feat: add SimBus">
+    <list default="true" id="4a947b55-fe62-4f56-8e2c-78ed909eceea" name="Changes" comment=":sparkles: feat(UI): add simple information display">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/component/PacketComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/component/PacketComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/component/SiteComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/component/SiteComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/panel/DrawPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/panel/DrawPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/panel/MainPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/panel/MainPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/panel/PacketInfoPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/panel/PacketInfoPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/panel/SiteInfoPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/panel/SiteInfoPanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -23,8 +18,8 @@
       <list>
         <option value="Enum" />
         <option value="JUnit5 Test Class" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -225,7 +220,12 @@
       <workItem from="1662364328685" duration="761000" />
       <workItem from="1662534780098" duration="5481000" />
       <workItem from="1662604672051" duration="1276000" />
-      <workItem from="1662631444408" duration="5114000" />
+      <workItem from="1662631444408" duration="5446000" />
+      <workItem from="1662701112617" duration="392000" />
+      <workItem from="1662701522233" duration="8710000" />
+      <workItem from="1662716640949" duration="715000" />
+      <workItem from="1662865422306" duration="2280000" />
+      <workItem from="1663038369617" duration="12961000" />
     </task>
     <task id="LOCAL-00001" summary=":construction: on working">
       <created>1660048329581</created>
@@ -423,7 +423,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662633789529</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary=":sparkles: feat(UI): add simple information display">
+      <created>1662638499752</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1662638499752</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -441,7 +448,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value=":construction: finish SocketCommunicator.java" />
     <MESSAGE value=":construction: modify packet design" />
     <MESSAGE value=":construction: fix SocketCommunicator bug; finish Proposer.prepare" />
     <MESSAGE value=":construction: modify PrepareLoad design" />
@@ -466,7 +472,8 @@
     <MESSAGE value=":sparkles: feat(sim) bind simulator sites" />
     <MESSAGE value=":sparkles: feat(sim) finish simple PaxosSim" />
     <MESSAGE value=":sparkles: feat: add SimBus" />
-    <option name="LAST_COMMIT_MESSAGE" value=":sparkles: feat: add SimBus" />
+    <MESSAGE value=":sparkles: feat(UI): add simple information display" />
+    <option name="LAST_COMMIT_MESSAGE" value=":sparkles: feat(UI): add simple information display" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
