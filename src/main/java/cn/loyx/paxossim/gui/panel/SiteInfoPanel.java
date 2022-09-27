@@ -4,7 +4,9 @@ import cn.loyx.paxossim.gui.comm.EventListener;
 import cn.loyx.paxossim.gui.comm.SimBus;
 import cn.loyx.paxossim.gui.component.SiteComponent;
 import cn.loyx.paxossim.sim.Simulator;
-import org.pushingpixels.radiance.animation.api.Timeline;
+import org.pushingpixels.radiance.animation.api.interpolator.KeyFrames;
+import org.pushingpixels.radiance.animation.api.interpolator.KeyTimes;
+import org.pushingpixels.radiance.animation.api.interpolator.KeyValues;
 import org.pushingpixels.radiance.animation.api.swing.SwingComponentTimeline;
 
 import javax.swing.*;
@@ -13,7 +15,6 @@ import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Timer;
 
 public class SiteInfoPanel extends JPanel {
 
@@ -31,6 +32,9 @@ public class SiteInfoPanel extends JPanel {
         int initial;
         int status = 0;
         double pos = 0;
+
+
+        double verticalExtend = 0;
         public ArrowComponent(Dimension dimension, int delta, int initial){
             this.delta = delta;
             this.initial = initial;
@@ -44,14 +48,18 @@ public class SiteInfoPanel extends JPanel {
             Graphics2D g2d = (Graphics2D) g;
             g2d.setColor(paintColor);
             g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-            g2d.fill(new Ellipse2D.Double(0, initial + pos * delta - width/2.0, width, width));
+            g2d.fill(new Ellipse2D.Double(0, initial + pos * delta - width/2.0, width, width*(1+verticalExtend)));
         }
 
         public void setStatus(int status) {
+            KeyTimes times = new KeyTimes(0.0f, 0.7f, 1.0f);
+            KeyValues<Double> values = KeyValues.create(0.0, 0.9, 0.0);
+
             SwingComponentTimeline timeline = SwingComponentTimeline.componentBuilder(this)
                     .setForceUiUpdate(true)
-                    .addPropertyToInterpolate("pos", (double)this.status, (double)status)
                     .addPropertyToInterpolate("paintColor", paintColor, colors.get(status))
+                    .addPropertyToInterpolate("verticalExtend", new KeyFrames<>(values, times))
+                    .addPropertyToInterpolate("pos", (double)this.status, (double)status)
                     .setDuration(200)
                     .build();
             timeline.play();
@@ -67,13 +75,22 @@ public class SiteInfoPanel extends JPanel {
         }
 
         public void setPos(double pos) {
-            System.out.println("set pos: " + pos);
+//            System.out.println("set pos: " + pos);
             this.pos = pos;
             repaint();
         }
 
         public double getPos() {
             return pos;
+        }
+
+        public double getVerticalExtend() {
+            return verticalExtend;
+        }
+
+        public void setVerticalExtend(double verticalExtend) {
+            this.verticalExtend = verticalExtend;
+            System.out.println("verticalExtend: " + verticalExtend);
         }
     }
 

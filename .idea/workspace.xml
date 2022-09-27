@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a947b55-fe62-4f56-8e2c-78ed909eceea" name="Changes" comment=":sparkles: feat(UI): add simple information display">
+    <list default="true" id="4a947b55-fe62-4f56-8e2c-78ed909eceea" name="Changes" comment=":sparkles: feat(UI): add SiteStatusControl button">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/panel/SiteInfoPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/panel/SiteInfoPanel.java" afterDir="false" />
     </list>
@@ -32,6 +32,7 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
         <option name="userSettingsFile" value="C:\Users\loyx\.m2\settings.xml" />
       </MavenGeneralSettings>
     </option>
@@ -52,7 +53,7 @@
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
     &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-16&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/0_workspace/云计算/PaxosSim/src/main/resources&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/3_各种作业课件/硕士/云计算（22年春）/大作业/PaxosSim&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
@@ -225,7 +226,9 @@
       <workItem from="1662701522233" duration="8710000" />
       <workItem from="1662716640949" duration="715000" />
       <workItem from="1662865422306" duration="2280000" />
-      <workItem from="1663038369617" duration="12961000" />
+      <workItem from="1663038369617" duration="14913000" />
+      <workItem from="1664246095378" duration="880000" />
+      <workItem from="1664270488953" duration="1777000" />
     </task>
     <task id="LOCAL-00001" summary=":construction: on working">
       <created>1660048329581</created>
@@ -430,7 +433,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662638499752</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary=":sparkles: feat(UI): add SiteStatusControl button">
+      <created>1663060776510</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1663060776510</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -448,7 +458,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value=":construction: modify packet design" />
     <MESSAGE value=":construction: fix SocketCommunicator bug; finish Proposer.prepare" />
     <MESSAGE value=":construction: modify PrepareLoad design" />
     <MESSAGE value=":construction: finish Acceptor.onPrepare" />
@@ -473,7 +482,8 @@
     <MESSAGE value=":sparkles: feat(sim) finish simple PaxosSim" />
     <MESSAGE value=":sparkles: feat: add SimBus" />
     <MESSAGE value=":sparkles: feat(UI): add simple information display" />
-    <option name="LAST_COMMIT_MESSAGE" value=":sparkles: feat(UI): add simple information display" />
+    <MESSAGE value=":sparkles: feat(UI): add SiteStatusControl button" />
+    <option name="LAST_COMMIT_MESSAGE" value=":sparkles: feat(UI): add SiteStatusControl button" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
