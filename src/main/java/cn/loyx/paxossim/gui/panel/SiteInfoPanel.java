@@ -2,8 +2,11 @@ package cn.loyx.paxossim.gui.panel;
 
 import cn.loyx.paxossim.gui.comm.EventListener;
 import cn.loyx.paxossim.gui.comm.SimBus;
+import cn.loyx.paxossim.gui.component.PacketComponent;
+import cn.loyx.paxossim.gui.component.PacketUIType;
 import cn.loyx.paxossim.gui.component.SiteComponent;
 import cn.loyx.paxossim.sim.Simulator;
+import lombok.val;
 import org.pushingpixels.radiance.animation.api.interpolator.KeyFrames;
 import org.pushingpixels.radiance.animation.api.interpolator.KeyTimes;
 import org.pushingpixels.radiance.animation.api.interpolator.KeyValues;
@@ -52,6 +55,9 @@ public class SiteInfoPanel extends JPanel {
         }
 
         public void setStatus(int status) {
+            if (status == this.status) {
+                return;
+            }
             KeyTimes times = new KeyTimes(0.0f, 0.7f, 1.0f);
             KeyValues<Double> values = KeyValues.create(0.0, 0.9, 0.0);
 
@@ -136,12 +142,22 @@ public class SiteInfoPanel extends JPanel {
             controlButtons.add(button);
             controlPanel.add(button, c);
         }
+
+        // status pointer
         ArrowComponent arrow = new ArrowComponent(controlPanel.getPreferredSize(), delta + top, delta / 2 + top);
+
+        // select listener
+        bus.addEventListener(new EventListener() {
+            @Override
+            public void siteSelected(SiteComponent siteComponent) {
+                arrow.setStatus(siteComponent.getState().ordinal());
+            }
+        });
+
+        // controlButtons Listener
         for (int i = 0; i < controlButtons.size(); i++) {
             int finalI = i;
-            controlButtons.get(i).addActionListener(e -> {
-                arrow.setStatus(finalI);
-            });
+            controlButtons.get(i).addActionListener(e -> arrow.setStatus(finalI));
         }
         c.insets = new Insets(0,0,0,0);
         c.gridx = 0;

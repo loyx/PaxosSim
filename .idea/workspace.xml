@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a947b55-fe62-4f56-8e2c-78ed909eceea" name="Changes" comment=":sparkles: feat(UI): add SiteStatusControl button">
+    <list default="true" id="4a947b55-fe62-4f56-8e2c-78ed909eceea" name="Changes" comment=":sparkles: feat(UI): Optimizing animation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/panel/SiteInfoPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/panel/SiteInfoPanel.java" afterDir="false" />
     </list>
@@ -228,7 +228,8 @@
       <workItem from="1662865422306" duration="2280000" />
       <workItem from="1663038369617" duration="14913000" />
       <workItem from="1664246095378" duration="880000" />
-      <workItem from="1664270488953" duration="1777000" />
+      <workItem from="1664270488953" duration="2625000" />
+      <workItem from="1664346817246" duration="2736000" />
     </task>
     <task id="LOCAL-00001" summary=":construction: on working">
       <created>1660048329581</created>
@@ -440,7 +441,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663060776510</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary=":sparkles: feat(UI): Optimizing animation">
+      <created>1664272375598</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1664272375598</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -458,7 +466,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value=":construction: fix SocketCommunicator bug; finish Proposer.prepare" />
     <MESSAGE value=":construction: modify PrepareLoad design" />
     <MESSAGE value=":construction: finish Acceptor.onPrepare" />
     <MESSAGE value=":construction: modify Configuration design; Add ProposeValue" />
@@ -483,7 +490,8 @@
     <MESSAGE value=":sparkles: feat: add SimBus" />
     <MESSAGE value=":sparkles: feat(UI): add simple information display" />
     <MESSAGE value=":sparkles: feat(UI): add SiteStatusControl button" />
-    <option name="LAST_COMMIT_MESSAGE" value=":sparkles: feat(UI): add SiteStatusControl button" />
+    <MESSAGE value=":sparkles: feat(UI): Optimizing animation" />
+    <option name="LAST_COMMIT_MESSAGE" value=":sparkles: feat(UI): Optimizing animation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
