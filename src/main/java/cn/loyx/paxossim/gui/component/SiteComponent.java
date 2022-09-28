@@ -49,6 +49,7 @@ public class SiteComponent extends JComponent {
     public void setState(SiteState state){
         this.state = state;
         siteImage = imageResources.get(this.state);
+        repaint();
     }
 
     public SiteState getState() {

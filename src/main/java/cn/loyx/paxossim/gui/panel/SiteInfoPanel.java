@@ -104,6 +104,7 @@ public class SiteInfoPanel extends JPanel {
     private final JPanel controlPanel;
     Simulator simulator;
     SimBus bus = SimBus.getInstance();
+    SiteComponent selectedSite = null;
 
     SiteInfoPanel(Dimension dimension){
         setPreferredSize(dimension);
@@ -120,6 +121,7 @@ public class SiteInfoPanel extends JPanel {
                 String name = siteComponent.getName();
                 SiteComponent.SiteState state = siteComponent.getState();
                 dynamicInfo.setText(String.format("%s - %s", name, state));
+                selectedSite = siteComponent;
             }
         });
 
@@ -157,7 +159,12 @@ public class SiteInfoPanel extends JPanel {
         // controlButtons Listener
         for (int i = 0; i < controlButtons.size(); i++) {
             int finalI = i;
-            controlButtons.get(i).addActionListener(e -> arrow.setStatus(finalI));
+            controlButtons.get(i).addActionListener(e -> {
+                if (selectedSite != null){
+                    arrow.setStatus(finalI);
+                    selectedSite.setState(SiteComponent.SiteState.values()[finalI]);
+                }
+            });
         }
         c.insets = new Insets(0,0,0,0);
         c.gridx = 0;

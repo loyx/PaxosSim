@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4a947b55-fe62-4f56-8e2c-78ed909eceea" name="Changes" comment=":sparkles: feat(UI): Optimizing animation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/component/SiteComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/component/SiteComponent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/panel/SiteInfoPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/loyx/paxossim/gui/panel/SiteInfoPanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -25,6 +26,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="d1083c4d-c5a6-4318-a64f-2dd6985092f4" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -229,7 +233,7 @@
       <workItem from="1663038369617" duration="14913000" />
       <workItem from="1664246095378" duration="880000" />
       <workItem from="1664270488953" duration="2625000" />
-      <workItem from="1664346817246" duration="2736000" />
+      <workItem from="1664346817246" duration="3487000" />
     </task>
     <task id="LOCAL-00001" summary=":construction: on working">
       <created>1660048329581</created>
@@ -448,7 +452,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664272375598</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary=":sparkles: feat(UI): Optimizing animation">
+      <created>1664349658720</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1664349658720</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
